@@ -5,17 +5,13 @@ using UnityEngine;
 public class Shoot : MonoBehaviour
 {
 
-    public float shootSpeed;
+    public float shootSpeed = 0.05f;
     private Vector3 shootspeed;
-
-
-
-
 
     // Use this for initialization
     void Start()
     {
-        GetComponent<Rigidbody>().velocity = Vector3.forward * shootSpeed / Time.deltaTime;
+        GetComponent<Rigidbody>().velocity = Vector3.right * shootSpeed / Time.deltaTime;
         Destroy(gameObject, 2f);
     }
 

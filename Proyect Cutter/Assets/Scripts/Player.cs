@@ -85,7 +85,7 @@ public class Player : MonoBehaviour {
             //if (!isBlueActive)
             //{
                 nextFire = myTime + fireDelta;
-                Instantiate(Shoot, ShootSpawn.position, Quaternion.identity);
+                Instantiate(Shoot, ShootSpawn.position, ShootSpawn.rotation);
                 nextFire = nextFire - myTime;
                 myTime = 0.0F;
                 //pew.Play();

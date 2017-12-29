@@ -133,19 +133,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a6e8f76e33edac14ea7ce3b66751072e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.037809454
+      value: 0.0071441
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a6e8f76e33edac14ea7ce3b66751072e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.004300356
+      value: -0.005047351
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a6e8f76e33edac14ea7ce3b66751072e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.024416337
+      value: 0.024272915
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a6e8f76e33edac14ea7ce3b66751072e, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9989774
+      value: 0.99966717
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a6e8f76e33edac14ea7ce3b66751072e, type: 3}
       propertyPath: m_RootOrder
@@ -165,15 +165,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a6e8f76e33edac14ea7ce3b66751072e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 4.3440003
+      value: 0.832
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a6e8f76e33edac14ea7ce3b66751072e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -0.388
+      value: -0.558
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a6e8f76e33edac14ea7ce3b66751072e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 2.786
+      value: 2.778
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: a6e8f76e33edac14ea7ce3b66751072e, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -297,16 +297,16 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 440338793}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -97.1665, y: 116.03801, z: 0}
+  m_LocalPosition: {x: -130.30002, y: 96.599014, z: 0.00000095367}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2142422267}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.84200007}
-  m_AnchorMax: {x: 0.45133594, y: 1}
-  m_AnchoredPosition: {x: 9, y: -1}
-  m_SizeDelta: {x: -2.600006, y: -3.5999985}
+  m_AnchorMin: {x: 0, y: 0.70520866}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: -10.300018, y: -1.4249878}
+  m_SizeDelta: {x: -41.2, y: -2.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &440338795
 MonoBehaviour:
@@ -329,11 +329,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: bfb4c8bf4684a334aa6a73a7f039ec55, type: 3}
-    m_FontSize: 25
+    m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 1
-    m_MinSize: 25
-    m_MaxSize: 40
+    m_MinSize: 19
+    m_MaxSize: 68
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -508,7 +508,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1107094436
+  randomSeed: 1093023601
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3971,7 +3971,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1059206143
+  randomSeed: 1871584634
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7418,7 +7418,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -1190789249
+  randomSeed: 668952215
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -10796,7 +10796,7 @@ MonoBehaviour:
   pipeSystem: {fileID: 527268613}
   velocity: 5
   rotationVelocity: 180
-  Shoot: {fileID: 1900341790527428, guid: cb88e728157e9e748901a40364424737, type: 2}
+  Shoot: {fileID: 1402533559728168, guid: 3a2a4cbebfe50a14d9e22ae349056416, type: 2}
   ShootSpawn: {fileID: 469508642}
 --- !u!4 &1357030381
 Transform:
@@ -11021,7 +11021,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1944843008
+  randomSeed: -1930219086
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -14383,7 +14383,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2142422266}
   m_LocalRotation: {x: -0.061628416, y: -0.7044161, z: 0.061628427, w: 0.704416}
-  m_LocalPosition: {x: -0.000030517578, y: 171.11185, z: 167.075}
+  m_LocalPosition: {x: -0.000030517578, y: 179.18648, z: 212.86855}
   m_LocalScale: {x: 1.0000001, y: 0.99999994, z: 1}
   m_Children:
   - {fileID: 440338794}
