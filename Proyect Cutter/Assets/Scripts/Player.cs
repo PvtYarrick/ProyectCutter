@@ -16,8 +16,22 @@ public class Player : MonoBehaviour {
 
 	private Transform world, rotater;
 
-	public void Die () {
+    //Variables añadidas de codigo anterior
+    //Bool para ver si está o no muerto el personaje
+    public static bool dead_ship;
+    private int score_count = 0;
+
+    //Codigo para el disparo: que se instancia, velocidad de disparo...
+    public GameObject Shoot;
+    public Transform ShootSpawn;
+
+    private float fireDelta = 0.5F;
+    private float nextFire = 1F;
+    private float myTime = 0.0F;
+
+    public void Die () {
 		gameObject.SetActive(false);
+        dead_ship = true;
 	}
 
 	private void Start () {
@@ -28,7 +42,68 @@ public class Player : MonoBehaviour {
 	}
 
 	private void Update () {
-		float delta = velocity * Time.deltaTime;
+
+        score_count++;
+        myTime = myTime + Time.deltaTime;
+
+        if (!dead_ship)
+        {
+            if (velocity == 5)
+            {
+                if (score_count == 5)
+                {
+                    //Score.score += (Score.score_add * Multiplier._Multiplier);
+                    score_count = 0;
+                }
+                /*currentPos.position = new Vector3(0, 0, 48.5f);
+                Music.pitch -= Time.deltaTime * NormalPitch / timeToDecrease;
+                if (Music.pitch <= 1)
+                {
+                    Music.pitch = NormalPitch;
+                }*/
+
+            }
+            /*else if (Tube.tubeSpeed == SpeedPowerup.ExtraSpeed)
+            {
+
+                currentPos.position = new Vector3(0, 0, 52.4f);
+                Score.score += (Score.score_add * 2 * Multiplier._Multiplier);
+                score_count = 0;
+                Music.pitch += Time.deltaTime * NormalPitch / timeToIncrease;
+            }*/
+        }
+        /*if (dead_ship)
+        {
+            Music.pitch -= Time.deltaTime * NormalPitch / timeToDecrease;
+            if (Music.pitch < 0)
+            {
+                Music.pitch = 0;
+            }
+    }*/
+        if (Input.GetKey("up") && myTime > nextFire)
+        {
+            //if (!isBlueActive)
+            //{
+                nextFire = myTime + fireDelta;
+                Instantiate(Shoot, ShootSpawn.position, Quaternion.identity);
+                nextFire = nextFire - myTime;
+                myTime = 0.0F;
+                //pew.Play();
+            //}
+            /*else
+            {
+                nextFire = myTime + fireDelta;
+                Instantiate(Shoot, ShootSpawn.position, Quaternion.identity);
+                Instantiate(Shoot, ShootSpawnRight.position, Quaternion.identity);
+                Instantiate(Shoot, ShootSpawnLeft.position, Quaternion.identity);
+                nextFire = nextFire - myTime;
+                myTime = 0.0f;
+                threepew.Play();
+                isBlueActive = false;
+            }*/
+        }
+
+        float delta = velocity * Time.deltaTime;
 		distanceTraveled += delta;
 		systemRotation += delta * deltaToRotation;
 
@@ -37,7 +112,9 @@ public class Player : MonoBehaviour {
 			currentPipe = pipeSystem.SetupNextPipe();
 			SetupCurrentPipe();
 			systemRotation = delta * deltaToRotation;
-		}
+
+
+}
 
 		pipeSystem.transform.localRotation =
 			Quaternion.Euler(0f, 0f, systemRotation);
