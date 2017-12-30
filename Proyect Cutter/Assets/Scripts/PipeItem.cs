@@ -2,12 +2,10 @@
 
 public class PipeItem : MonoBehaviour {
 
-	private Transform rotater;
+	protected Transform rotater;
 
     //Variables para vida/comportamiento de enemigos metido por nosotros
-    //public float enemySpeed;
-    //private Vector3 speed;
-    public uint score_enemy;
+    protected uint score_enemy;
     protected int enemyLife;
     //public static int shield_count = 3;
     //public ParticleSystem DeathEnemyParticle;
@@ -18,7 +16,7 @@ public class PipeItem : MonoBehaviour {
 	}
 
 	public void Position (Pipe pipe, float curveRotation, float ringRotation) {
-		transform.SetParent(pipe.transform, false);
+        transform.SetParent(pipe.transform, false);
 		transform.localRotation = Quaternion.Euler(0f, 0f, -curveRotation);
 		rotater.localPosition = new Vector3(0f, pipe.CurveRadius);
 		rotater.localRotation = Quaternion.Euler(ringRotation, 0f, 0f);

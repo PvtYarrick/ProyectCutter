@@ -31,11 +31,11 @@ public class Shoot : MonoBehaviour
             if (obj.vida() <= 0)
             {
                 Destroy(col.gameObject);
-                /*Score.score = Score.score + (obj.enemyScore() * Multiplier._Multiplier);
-                PointsAdder.isEnemyDestroyed = true;
-                PointsAdder.enemy_destroyed = obj;
+                Score.score = Score.score + (obj.enemyScore() * Multiplier._Multiplier);
+                AddPoints.isEnemyDestroyed = true;
+                AddPoints.enemy_destroyed = obj;
                 Multiplier.MPCounter = Multiplier.MPCounter + (obj.enemyScore() / 10);
-                Multiplier.killing_countdown = Multiplier.count;*/
+                Multiplier.killing_countdown = Multiplier.count;
             }
             Destroy(gameObject);
         }

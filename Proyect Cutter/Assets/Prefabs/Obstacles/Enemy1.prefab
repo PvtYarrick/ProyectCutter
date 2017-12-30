@@ -87,8 +87,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4029097668702824}
-  - component: {fileID: 114443977324287336}
   - component: {fileID: 54665092091332206}
+  - component: {fileID: 114004033637351918}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Untagged
@@ -327,7 +327,7 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!114 &114443977324287336
+--- !u!114 &114004033637351918
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -335,10 +335,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1651206688554030}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f041aeb110e648f7a55e54320c29517, type: 3}
+  m_Script: {fileID: 11500000, guid: 84765af6d2ef8614292dbe35fbe8f392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score_enemy: 0
+  enemy_score: 10
+  life: 1
 --- !u!135 &135769118442212260
 SphereCollider:
   m_ObjectHideFlags: 1
