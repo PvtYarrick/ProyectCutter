@@ -6,6 +6,7 @@ public class EnemyEditor : PipeItem
 {
     public uint enemy_score;
     public int life;
+    
 
     void Awake()
     {
