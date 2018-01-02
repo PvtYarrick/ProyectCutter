@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class PipeItem : MonoBehaviour {
 
@@ -10,6 +11,12 @@ public class PipeItem : MonoBehaviour {
     //public static int shield_count = 3;
     //public ParticleSystem DeathEnemyParticle;
     //hasta aquí
+
+    public List<GameObject> Bulb_meshes;
+    public List<Light> Bulb_lights;
+    protected int bulb_index;
+    public GameObject bulb_broken;
+    protected ParticleSystem BrokenBulbParticle;
 
     private void Awake () {
 		rotater = transform.GetChild(0);
@@ -53,8 +60,15 @@ public class PipeItem : MonoBehaviour {
     {
         return score_enemy;
     }
-    public void hit(int dmg)
+    public void hit()
     {
-        enemyLife -= dmg;
-    }
+        enemyLife -= 1;
+        if (bulb_index >= Bulb_lights.Count) {
+            return;
+        }
+        BrokenBulbParticle.Play();
+        Bulb_lights[bulb_index].enabled = false;
+        Bulb_meshes[bulb_index].GetComponent<MeshFilter>().sharedMesh = bulb_broken.GetComponent<MeshFilter>().sharedMesh;
+        bulb_index += 1;
+    }  
 }

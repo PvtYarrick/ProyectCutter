@@ -15,6 +15,8 @@ public class EnemyEditor : PipeItem
         score_enemy = enemy_score;
         enemyLife = life;
         rotater = transform.GetChild(0);
+        bulb_index = 0;
+        BrokenBulbParticle = GetComponentInChildren<ParticleSystem>();
     }
 
     /*protected override void OnCollisionEnter(Collision ShipCol)

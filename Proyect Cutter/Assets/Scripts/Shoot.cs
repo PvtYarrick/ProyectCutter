@@ -22,20 +22,22 @@ public class Shoot : MonoBehaviour
         if (obj != null)
         {
             
-            obj.hit(1);
-            /*if (obj.vida() == 1)
-            {
-                e2.DamageFlash();
-            }*/
+            obj.hit();
+            //if (obj.vida() == 1)
+            //{
+                
+            //}
             //EnemySpawner.damageTaken.Play();
             if (obj.vida() <= 0)
             {
-                Destroy(col.gameObject);
+                //Destroy(col.gameObject);
                 Score.score = Score.score + (obj.enemyScore() * Multiplier._Multiplier);
                 AddPoints.isEnemyDestroyed = true;
                 AddPoints.enemy_destroyed = obj;
                 Multiplier.MPCounter = Multiplier.MPCounter + (obj.enemyScore() / 10);
                 Multiplier.killing_countdown = Multiplier.count;
+            }else{
+
             }
             Destroy(gameObject);
         }
