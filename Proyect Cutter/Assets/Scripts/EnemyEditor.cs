@@ -17,6 +17,7 @@ public class EnemyEditor : PipeItem
         rotater = transform.GetChild(0);
         bulb_index = 0;
         BrokenBulbParticle = GetComponentInChildren<ParticleSystem>();
+        deadEnemy_anim = GetComponentInChildren<Animator>();
     }
 
     /*protected override void OnCollisionEnter(Collision ShipCol)

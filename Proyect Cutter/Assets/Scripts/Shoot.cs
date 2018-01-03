@@ -31,12 +31,15 @@ public class Shoot : MonoBehaviour
             if (obj.vida() <= 0)
             {
                 //Destroy(col.gameObject);
+                obj.deadEnemy_anim.SetTrigger("enemyDies");
                 Score.score = Score.score + (obj.enemyScore() * Multiplier._Multiplier);
                 AddPoints.isEnemyDestroyed = true;
                 AddPoints.enemy_destroyed = obj;
                 Multiplier.MPCounter = Multiplier.MPCounter + (obj.enemyScore() / 10);
                 Multiplier.killing_countdown = Multiplier.count;
-            }else{
+                Destroy(obj.gameObject, obj.deadEnemy_anim.GetCurrentAnimatorStateInfo(0).length);
+            }
+            else{
 
             }
             Destroy(gameObject);

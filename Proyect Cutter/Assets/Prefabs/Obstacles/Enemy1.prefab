@@ -416,7 +416,7 @@ Animator:
   m_GameObject: {fileID: 1595022415005674}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 01e06458957accf45af093590d80a71e, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e57c884f055d95a4f885e7602fdb9326, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -477,6 +477,7 @@ MonoBehaviour:
   - {fileID: 108125159570415530}
   bulb_broken: {fileID: 1968132007093102, guid: 53359160d8fc43248b97e4a49a0cce40,
     type: 2}
+  deadEnemy_anim: {fileID: 0}
   enemy_score: 10
   life: 1
 --- !u!198 &198276716660314442
@@ -691,7 +692,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.01
+      scalar: 0.015
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -935,7 +936,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0.6
-    maxNumParticles: 83
+    maxNumParticles: 113
     size3D: 0
     rotation3D: 0
     gravityModifier:

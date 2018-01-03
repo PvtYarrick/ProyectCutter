@@ -17,6 +17,7 @@ public class PipeItem : MonoBehaviour {
     protected int bulb_index;
     public GameObject bulb_broken;
     protected ParticleSystem BrokenBulbParticle;
+    public Animator deadEnemy_anim;
 
     private void Awake () {
 		rotater = transform.GetChild(0);
