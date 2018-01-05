@@ -27,7 +27,7 @@ public class Shoot : MonoBehaviour
             //{
                 
             //}
-            //EnemySpawner.damageTaken.Play();
+
             if (obj.vida() <= 0)
             {
                 //Destroy(col.gameObject);
@@ -38,6 +38,7 @@ public class Shoot : MonoBehaviour
                 Multiplier.MPCounter = Multiplier.MPCounter + (obj.enemyScore() / 10);
                 Multiplier.killing_countdown = Multiplier.count;
                 Destroy(obj.gameObject, obj.deadEnemy_anim.GetCurrentAnimatorStateInfo(0).length);
+                obj.enemyCollider.enabled = false;
             }
             else{
 

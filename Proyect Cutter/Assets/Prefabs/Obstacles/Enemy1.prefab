@@ -167,7 +167,7 @@ Transform:
   m_GameObject: {fileID: 1499511687813420}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.4, y: 28.4, z: 0.3}
-  m_LocalScale: {x: 53.614296, y: 54.7556, z: 1}
+  m_LocalScale: {x: 42.355415, y: 54.7556, z: 1}
   m_Children: []
   m_Father: {fileID: 4873839052008722}
   m_RootOrder: 1
@@ -478,6 +478,7 @@ MonoBehaviour:
   bulb_broken: {fileID: 1968132007093102, guid: 53359160d8fc43248b97e4a49a0cce40,
     type: 2}
   deadEnemy_anim: {fileID: 0}
+  enemyCollider: {fileID: 0}
   enemy_score: 10
   life: 1
 --- !u!198 &198276716660314442

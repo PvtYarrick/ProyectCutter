@@ -18,6 +18,7 @@ public class EnemyEditor : PipeItem
         bulb_index = 0;
         BrokenBulbParticle = GetComponentInChildren<ParticleSystem>();
         deadEnemy_anim = GetComponentInChildren<Animator>();
+        enemyCollider = GetComponentInChildren<BoxCollider>();
     }
 
     /*protected override void OnCollisionEnter(Collision ShipCol)
