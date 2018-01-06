@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Pipe : MonoBehaviour {
 
@@ -22,6 +23,10 @@ public class Pipe : MonoBehaviour {
 
 	private float curveAngle;
 	private float relativeRotation;
+
+    public List<Vector3> segmentPositions = new List<Vector3>();
+
+    private List<Transform> segmentMatrix = new List<Transform>();
 
 	public float CurveAngle {
 		get {
@@ -88,7 +93,9 @@ public class Pipe : MonoBehaviour {
 
 		Vector3 vertexA = GetPointOnTorus(0f, 0f);
 		Vector3 vertexB = GetPointOnTorus(u, 0f);
-		for (int v = 1, i = 0; v <= pipeSegmentCount; v++, i += 4) {
+        segmentPositions.Add(vertexB);
+
+        for (int v = 1, i = 0; v <= pipeSegmentCount; v++, i += 4) {
 			vertices[i] = vertexA;
 			vertices[i + 1] = vertexA = GetPointOnTorus(0f, v * vStep);
 			vertices[i + 2] = vertexB;
@@ -101,6 +108,12 @@ public class Pipe : MonoBehaviour {
 		int ringOffset = pipeSegmentCount * 4;
 
 		Vector3 vertex = GetPointOnTorus(u, 0f);
+
+        Transform transf = new GameObject("cagarro").transform;
+        transf.SetParent(this.transform, false);
+        transf.position = vertex;
+        segmentMatrix.Add(transf);
+        segmentPositions.Add(vertex);
 		for (int v = 1; v <= pipeSegmentCount; v++, i += 4) {
 			vertices[i] = vertices[i - ringOffset + 2];
 			vertices[i + 1] = vertices[i - ringOffset + 3];
@@ -119,8 +132,18 @@ public class Pipe : MonoBehaviour {
 		}
 		mesh.uv = uv;
 	}
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        for(int i = 0; i < segmentMatrix.Count; i++)
+        {
+            if(segmentMatrix[i] != null)
+                Gizmos.DrawSphere(segmentMatrix[i].position, 0.1f);
+        }
+    }
+#endif
 
-	private void SetTriangles () {
+    private void SetTriangles () {
 		triangles = new int[pipeSegmentCount * curveSegmentCount * 6];
 		for (int t = 0, i = 0; t < triangles.Length; t += 6, i += 4) {
 			triangles[t] = i;

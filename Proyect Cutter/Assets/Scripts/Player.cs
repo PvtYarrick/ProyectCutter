@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 
-public class Player : MonoBehaviour {
+public class Player : MonoBehaviour
+{
 
-	public PipeSystem pipeSystem;
+    public PipeSystem pipeSystem;
 
-	public float velocity;
-	public float rotationVelocity;
+    public float velocity;
+    public float rotationVelocity;
 
-	private Pipe currentPipe;
+    public Pipe currentPipe { get; private set; }
 
-	private float distanceTraveled;
-	private float deltaToRotation;
-	private float systemRotation;
-	private float worldRotation, avatarRotation;
+    public int currentPipeSegment { get; private set; }
 
-	private Transform world, rotater;
+    private float distanceTraveled;
+    private float deltaToRotation;
+    private float systemRotation;
+    private float worldRotation, avatarRotation;
+
+    private Transform world, rotater;
 
     //Variables añadidas de codigo anterior
     //Bool para ver si está o no muerto el personaje
@@ -29,19 +32,23 @@ public class Player : MonoBehaviour {
     private float nextFire = 1F;
     private float myTime = 0.0F;
 
-    public void Die () {
-		gameObject.SetActive(false);
+    public void Die()
+    {
+        gameObject.SetActive(false);
         dead_ship = true;
-	}
+    }
 
-	private void Start () {
-		world = pipeSystem.transform.parent;
-		rotater = transform.GetChild(0);
-		currentPipe = pipeSystem.SetupFirstPipe();
-		SetupCurrentPipe();
-	}
+    private void Start()
+    {
+        world = pipeSystem.transform.parent;
+        rotater = transform.GetChild(0);
+        currentPipe = pipeSystem.SetupFirstPipe();
+        currentPipeSegment = 0;
+        SetupCurrentPipe();
+    }
 
-	private void Update () {
+    private void Update()
+    {
 
         score_count++;
         myTime = myTime + Time.deltaTime;
@@ -84,11 +91,11 @@ public class Player : MonoBehaviour {
         {
             //if (!isBlueActive)
             //{
-                nextFire = myTime + fireDelta;
-                Instantiate(Shoot, ShootSpawn.position, ShootSpawn.rotation);
-                nextFire = nextFire - myTime;
-                myTime = 0.0F;
-                //pew.Play();
+            nextFire = myTime + fireDelta;
+            Instantiate(Shoot, ShootSpawn.position, ShootSpawn.rotation);
+            nextFire = nextFire - myTime;
+            myTime = 0.0F;
+            //pew.Play();
             //}
             /*else
             {
@@ -104,45 +111,49 @@ public class Player : MonoBehaviour {
         }
 
         float delta = velocity * Time.deltaTime;
-		distanceTraveled += delta;
-		systemRotation += delta * deltaToRotation;
+        distanceTraveled += delta;
+        systemRotation += delta * deltaToRotation;
 
-		if (systemRotation >= currentPipe.CurveAngle) {
-			delta = (systemRotation - currentPipe.CurveAngle) / deltaToRotation;
-			currentPipe = pipeSystem.SetupNextPipe();
-			SetupCurrentPipe();
-			systemRotation = delta * deltaToRotation;
+        if (systemRotation >= currentPipe.CurveAngle)
+        {
+            delta = (systemRotation - currentPipe.CurveAngle) / deltaToRotation;
+            currentPipe = pipeSystem.SetupNextPipe();
+            SetupCurrentPipe();
+            systemRotation = delta * deltaToRotation;
 
 
-}
+        }
 
-		pipeSystem.transform.localRotation =
-			Quaternion.Euler(0f, 0f, systemRotation);
+        pipeSystem.transform.localRotation = Quaternion.Euler(0f, 0f, systemRotation);
 
-		UpdateAvatarRotation();
-	}
+        UpdateAvatarRotation();
+    }
 
-	private void UpdateAvatarRotation () {
-		avatarRotation +=
-			rotationVelocity * Time.deltaTime * Input.GetAxis("Horizontal");
-		if (avatarRotation < 0f) {
-			avatarRotation += 360f;
-		}
-		else if (avatarRotation >= 360f) {
-			avatarRotation -= 360f;
-		}
-		rotater.localRotation = Quaternion.Euler(avatarRotation, 0f, 0f);
-	}
+    private void UpdateAvatarRotation()
+    {
+        avatarRotation +=
+            rotationVelocity * Time.deltaTime * Input.GetAxis("Horizontal");
 
-	private void SetupCurrentPipe () {
-		deltaToRotation = 360f / (2f * Mathf.PI * currentPipe.CurveRadius);
-		worldRotation += currentPipe.RelativeRotation;
-		if (worldRotation < 0f) {
-			worldRotation += 360f;
-		}
-		else if (worldRotation >= 360f) {
-			worldRotation -= 360f;
-		}
-		world.localRotation = Quaternion.Euler(worldRotation, 0f, 0f);
-	}
+        if (avatarRotation < 0f)
+            avatarRotation += 360f;
+        else if (avatarRotation >= 360f)
+            avatarRotation -= 360f;
+
+        rotater.localRotation = Quaternion.Euler(avatarRotation, 0f, 0f);
+    }
+
+    private void SetupCurrentPipe()
+    {
+        deltaToRotation = 360f / (2f * Mathf.PI * currentPipe.CurveRadius);
+        worldRotation += currentPipe.RelativeRotation;
+        if (worldRotation < 0f)
+        {
+            worldRotation += 360f;
+        }
+        else if (worldRotation >= 360f)
+        {
+            worldRotation -= 360f;
+        }
+        world.localRotation = Quaternion.Euler(worldRotation, 0f, 0f);
+    }
 }
