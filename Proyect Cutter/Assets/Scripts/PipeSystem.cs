@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class PipeSystem : MonoBehaviour {
 
@@ -14,16 +15,22 @@ public class PipeSystem : MonoBehaviour {
 		pipes = new Pipe[pipeCount];
 		for (int i = 0; i < pipes.Length; i++) {
 			Pipe pipe = pipes[i] = Instantiate<Pipe>(pipePrefab);
-			pipe.transform.SetParent(transform, false);
+            pipe.transform.SetParent(transform, false);
 			pipe.Generate(i > emptyPipeCount);
-			if (i > 0) {
-				pipe.AlignWith(pipes[i - 1]);
-			}
-		}
-		AlignNextPipeWithOrigin();
+            if (i > 0)
+            {
+                pipes[i].AlignWith(pipes[i - 1]);
+            }
+        }
+        AlignNextPipeWithOrigin();
+
+        for(int i = 0; i < pipes.Length - 1; i++)
+        {
+            pipes[i].linkedNextPipe = pipes[i + 1];
+        }
 	}
 
-	public Pipe SetupFirstPipe () {
+    public Pipe SetupFirstPipe () {
 		transform.localPosition = new Vector3(0f, -pipes[1].CurveRadius);
 		return pipes[1];
 	}
@@ -43,7 +50,15 @@ public class PipeSystem : MonoBehaviour {
 			pipes[i - 1] = pipes[i];
 		}
 		pipes[pipes.Length - 1] = temp;
-	}
+
+        for (int i = 0; i < pipes.Length; i++)
+        {
+            if (i == pipes.Length - 1)
+                pipes[i].linkedNextPipe = null;
+            else
+                pipes[i].linkedNextPipe = pipes[i + 1];
+        }
+    }
 
 	private void AlignNextPipeWithOrigin () {
 		Transform transformToAlign = pipes[1].transform;

@@ -750,7 +750,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 874382105
+  randomSeed: -1761548879
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -4257,7 +4257,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1575588135
+  randomSeed: 1784134768
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -7748,7 +7748,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
-  randomSeed: -155960256
+  randomSeed: 1245649433
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -11394,7 +11394,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -1452272025
+  randomSeed: -401638427
   InitialModule:
     serializedVersion: 3
     enabled: 1

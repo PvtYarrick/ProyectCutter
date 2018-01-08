@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
@@ -8,11 +6,13 @@ public class Shoot : MonoBehaviour
     public float shootSpeed = 0.05f;
     private Vector3 shootspeed;
 
+    public float lifeTime = 2f;
+
     // Use this for initialization
     void Start()
     {
-        GetComponent<Rigidbody>().velocity = Vector3.right * shootSpeed / Time.deltaTime;
-        Destroy(gameObject, 2f);
+        //GetComponent<Rigidbody>().velocity = Vector3.right * shootSpeed / Time.deltaTime;
+        Destroy(transform.parent.gameObject, lifeTime);
     }
 
     void OnCollisionEnter(Collision col)
@@ -35,15 +35,15 @@ public class Shoot : MonoBehaviour
                 Score.score = Score.score + (obj.enemyScore() * Multiplier._Multiplier);
                 AddPoints.isEnemyDestroyed = true;
                 AddPoints.enemy_destroyed = obj;
+
                 Multiplier.MPCounter = Multiplier.MPCounter + (obj.enemyScore() / 10);
                 Multiplier.killing_countdown = Multiplier.count;
+
                 Destroy(obj.gameObject, obj.deadEnemy_anim.GetCurrentAnimatorStateInfo(0).length);
                 obj.enemyCollider.enabled = false;
             }
-            else{
 
-            }
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 }

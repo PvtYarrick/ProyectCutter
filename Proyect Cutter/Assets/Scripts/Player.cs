@@ -92,7 +92,11 @@ public class Player : MonoBehaviour
             //if (!isBlueActive)
             //{
             nextFire = myTime + fireDelta;
-            Instantiate(Shoot, ShootSpawn.position, ShootSpawn.rotation);
+            // Instantiate(Shoot, ShootSpawn.position, ShootSpawn.rotation);
+            GameObject newBullet = Instantiate(Shoot, Vector3.zero, Quaternion.identity);
+            newBullet.transform.SetParent(pipeSystem.transform, true);
+            newBullet.GetComponent<BulletPipeFollow>().SetInitialTarget(currentPipe, currentPipe.getClosestSegment(transform.position), rotater.rotation);
+
             nextFire = nextFire - myTime;
             myTime = 0.0F;
             //pew.Play();

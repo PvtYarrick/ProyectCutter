@@ -24,9 +24,14 @@ public class Pipe : MonoBehaviour {
 	private float curveAngle;
 	private float relativeRotation;
 
+    //center location
     public List<Vector3> segmentPositions = new List<Vector3>();
-
+    private List<GameObject> segmentCenterGameObjects = new List<GameObject>();
     private List<Transform> segmentMatrix = new List<Transform>();
+    private List<Vector3> parentRelativePosition = new List<Vector3>();
+
+    
+    public Pipe linkedNextPipe { get; set; }
 
 	public float CurveAngle {
 		get {
@@ -57,8 +62,23 @@ public class Pipe : MonoBehaviour {
 		mesh.name = "Pipe";
 	}
 
-	public void Generate (bool withItems = true) {
-		curveRadius = Random.Range(minCurveRadius, maxCurveRadius);
+	public void Generate (bool withItems = true)
+    {
+        for(int i = 0; i < segmentCenterGameObjects.Count; i++)
+        {
+            DestroyImmediate(segmentCenterGameObjects[i]);
+        }
+
+        segmentCenterGameObjects.Clear();
+        segmentPositions.Clear();
+        segmentMatrix.Clear();
+        parentRelativePosition.Clear();
+
+        transform.position = Vector3.zero;
+        transform.rotation = Quaternion.identity;
+
+
+        curveRadius = Random.Range(minCurveRadius, maxCurveRadius);
 		curveSegmentCount =
 			Random.Range(minCurveSegmentCount, maxCurveSegmentCount + 1);
 		mesh.Clear();
@@ -67,8 +87,10 @@ public class Pipe : MonoBehaviour {
 		SetTriangles();
 		mesh.RecalculateNormals();
 
-		for (int i = 0; i < transform.childCount; i++) {
-			Destroy(transform.GetChild(i).gameObject);
+		for (int i = 0; i < transform.childCount; i++)
+        {
+            if(!transform.GetChild(i).name.Equals("uCenter"))
+			    Destroy(transform.GetChild(i).gameObject);
 		}
 		if (withItems) {
 			generators[Random.Range(0, generators.Length)].GenerateItems(this);
@@ -88,12 +110,32 @@ public class Pipe : MonoBehaviour {
 		mesh.vertices = vertices;
 	}
 
-	private void CreateFirstQuadRing (float u) {
-		float vStep = (2f * Mathf.PI) / pipeSegmentCount;
+    private void CreateFirstQuadRing (float u)
+    {
+        float uStep = (2f * Mathf.PI) / curveSegmentCount;
+        float vStep = (2f * Mathf.PI) / pipeSegmentCount;
 
 		Vector3 vertexA = GetPointOnTorus(0f, 0f);
 		Vector3 vertexB = GetPointOnTorus(u, 0f);
-        segmentPositions.Add(vertexB);
+
+
+        Vector3 center = Vector3.zero;
+        center.x = curveRadius * Mathf.Sin(u * uStep);
+        center.y = curveRadius * Mathf.Cos(u * uStep);
+
+        GameObject newCenter = new GameObject("uCenter");
+        segmentCenterGameObjects.Add(newCenter);
+
+        Transform transf = newCenter.transform;
+        segmentMatrix.Add(transf);
+
+        segmentPositions.Add(center);
+
+        transf.position = center;
+        transf.SetParent(this.transform, true);
+        parentRelativePosition.Add(transf.localPosition);
+       // transf.SetParent(null, false);
+
 
         for (int v = 1, i = 0; v <= pipeSegmentCount; v++, i += 4) {
 			vertices[i] = vertexA;
@@ -104,17 +146,34 @@ public class Pipe : MonoBehaviour {
 	}
 
 	private void CreateQuadRing (float u, int i) {
-		float vStep = (2f * Mathf.PI) / pipeSegmentCount;
+        float uStep = (2f * Mathf.PI) / curveSegmentCount;
+
+        float vStep = (2f * Mathf.PI) / pipeSegmentCount;
 		int ringOffset = pipeSegmentCount * 4;
 
 		Vector3 vertex = GetPointOnTorus(u, 0f);
 
-        Transform transf = new GameObject("cagarro").transform;
-        transf.SetParent(this.transform, false);
-        transf.position = vertex;
+
+        Vector3 center = Vector3.zero;
+        center.x = curveRadius * Mathf.Sin(u * uStep);
+        center.y = curveRadius * Mathf.Cos(u * uStep);
+
+        GameObject newCenter = new GameObject("uCenter");
+        segmentCenterGameObjects.Add(newCenter);
+
+        Transform transf = newCenter.transform;
         segmentMatrix.Add(transf);
-        segmentPositions.Add(vertex);
-		for (int v = 1; v <= pipeSegmentCount; v++, i += 4) {
+
+        segmentPositions.Add(center);
+
+        transf.position = center;
+        transf.SetParent(this.transform, true);
+        parentRelativePosition.Add(transf.localPosition);
+        //transf.SetParent(null, false);
+
+
+        for (int v = 1; v <= pipeSegmentCount; v++, i += 4)
+        {
 			vertices[i] = vertices[i - ringOffset + 2];
 			vertices[i + 1] = vertices[i - ringOffset + 3];
 			vertices[i + 2] = vertex;
@@ -163,17 +222,33 @@ public class Pipe : MonoBehaviour {
 		return p;
 	}
 
-	public void AlignWith (Pipe pipe) {
-		relativeRotation =
-			Random.Range(0, curveSegmentCount) * 360f / pipeSegmentCount;
+    public void AlignWith(Pipe pipe)
+    {
+        relativeRotation =
+            Random.Range(0, curveSegmentCount) * 360f / pipeSegmentCount;
 
-		transform.SetParent(pipe.transform, false);
-		transform.localPosition = Vector3.zero;
-		transform.localRotation = Quaternion.Euler(0f, 0f, -pipe.curveAngle);
-		transform.Translate(0f, pipe.curveRadius, 0f);
-		transform.Rotate(relativeRotation, 0f, 0f);
-		transform.Translate(0f, -curveRadius, 0f);
-		transform.SetParent(pipe.transform.parent);
-		transform.localScale = Vector3.one;
-	}
+        transform.SetParent(pipe.transform, false);
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.Euler(0f, 0f, -pipe.curveAngle);
+        transform.Translate(0f, pipe.curveRadius, 0f);
+        transform.Rotate(relativeRotation, 0f, 0f);
+        transform.Translate(0f, -curveRadius, 0f);
+        transform.SetParent(pipe.transform.parent);
+        transform.localScale = Vector3.one;
+    }
+
+    public int getClosestSegment(Vector3 fromPosition)
+    {
+        int segmentID = 0;
+        float closest = -1;
+        for(int i = 0; i < segmentMatrix.Count; i++)
+        {
+            if(closest == -1 || Vector3.Magnitude(fromPosition - segmentMatrix[i].position) < closest)
+            {
+                closest = Vector3.Magnitude(fromPosition - segmentMatrix[i].position);
+                segmentID = i;
+            }
+        }
+        return segmentID;
+    }
 }
