@@ -8,11 +8,14 @@ public class Shoot : MonoBehaviour
 
     public float lifeTime = 2f;
 
+    public AudioClip fx_shoot;
+
     // Use this for initialization
     void Start()
     {
         //GetComponent<Rigidbody>().velocity = Vector3.right * shootSpeed / Time.deltaTime;
         Destroy(transform.parent.parent.gameObject, lifeTime);
+        SoundManager.getInstance().playSoundEffect(fx_shoot, 0.6f);
     }
 
     void OnCollisionEnter(Collision col)
@@ -25,7 +28,7 @@ public class Shoot : MonoBehaviour
             obj.hit();
             //if (obj.vida() == 1)
             //{
-                
+
             //}
 
             if (obj.vida() <= 0)

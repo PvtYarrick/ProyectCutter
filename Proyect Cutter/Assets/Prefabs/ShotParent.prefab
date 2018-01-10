@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4304028713170802}
   - component: {fileID: 114647853371878690}
+  - component: {fileID: 114637992566116220}
   m_Layer: 0
   m_Name: ShotParent
   m_TagString: Untagged
@@ -305,6 +306,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootSpeed: 0
   lifeTime: 3
+  fx_shoot: {fileID: 0}
+--- !u!114 &114637992566116220
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1226255734765396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55d04e0513d53a04e8aad8badff9703b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootSpeed: 0.05
+  lifeTime: 2
+  fx_shoot: {fileID: 8300000, guid: 0c3a2e1391aff004299aff77edb5c243, type: 3}
 --- !u!114 &114647853371878690
 MonoBehaviour:
   m_ObjectHideFlags: 1

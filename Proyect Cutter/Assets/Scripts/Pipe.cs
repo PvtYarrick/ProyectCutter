@@ -24,7 +24,12 @@ public class Pipe : MonoBehaviour {
     //Emission Color On and Off
     private float floor = 0.3f;
     private float ceiling = 5.0f;
-    
+    private static Color[] wallColors = { Color.cyan, Color.green, Color.yellow, Color.red, Color.magenta, Color.blue}; 
+    private static int numberColors = 6;
+    private static int colorToDisplay = 0;
+    private static int changeColorCooldown = COOLDOWN;
+    private const int COOLDOWN = 500;
+
 
     private float curveAngle;
 	private float relativeRotation;
@@ -278,12 +283,19 @@ public class Pipe : MonoBehaviour {
         Material mat = renderer.material;
 
         float emission = Mathf.PingPong(Time.time, 1.0f);
-        Color firstColor = Color.cyan; //Replace this with whatever you want for your base color at emission level '1'
-        Color secondColor = Color.green;
-        Color thirdColor = Color.yellow;
-        Color fourthColor = Color.red;
-        Color fifthColor = Color.magenta;
-        Color sixthColor = Color.blue;
+
+        if (changeColorCooldown == 0){
+
+            colorToDisplay++;
+            colorToDisplay = colorToDisplay % numberColors;
+            changeColorCooldown = COOLDOWN;
+        }else
+        {
+            changeColorCooldown--;
+        }
+
+        Color firstColor = wallColors[colorToDisplay]; //Replace this with whatever you want for your base color at emission level '1'
+
         Color finalColor = firstColor * Mathf.LinearToGammaSpace(emission);
 
         mat.SetColor("_EmissionColor", finalColor);

@@ -11,6 +11,8 @@ public class PipeSystem : MonoBehaviour {
 
 	private Pipe[] pipes;
 
+    public AudioClip mu_game;
+
 	private void Awake () {
 		pipes = new Pipe[pipeCount];
 		for (int i = 0; i < pipes.Length; i++) {
@@ -29,6 +31,13 @@ public class PipeSystem : MonoBehaviour {
             pipes[i].linkedNextPipe = pipes[i + 1];
         }
 	}
+
+    private void Start()
+    {
+        SoundManager.getInstance().stopMusic();
+        SoundManager.getInstance().setMusicVolume(0.3f);
+        SoundManager.getInstance().setMusicAndPlay(mu_game);
+    }
 
     public Pipe SetupFirstPipe () {
 		transform.localPosition = new Vector3(0f, -pipes[1].CurveRadius);
