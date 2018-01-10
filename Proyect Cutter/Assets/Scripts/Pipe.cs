@@ -21,7 +21,12 @@ public class Pipe : MonoBehaviour {
 	private Vector2[] uv;
 	private int[] triangles;
 
-	private float curveAngle;
+    //Emission Color On and Off
+    private float floor = 0.3f;
+    private float ceiling = 5.0f;
+    
+
+    private float curveAngle;
 	private float relativeRotation;
 
     //center location
@@ -60,7 +65,8 @@ public class Pipe : MonoBehaviour {
 	private void Awake () {
 		GetComponent<MeshFilter>().mesh = mesh = new Mesh();
 		mesh.name = "Pipe";
-	}
+        float emission = floor + Mathf.PingPong(Time.time, ceiling - floor);
+    }
 
 	public void Generate (bool withItems = true)
     {
@@ -264,5 +270,23 @@ public class Pipe : MonoBehaviour {
             }
         }
         return segmentID;
+    }
+    //Emission change
+    void Update()
+    {
+        Renderer renderer = GetComponent<Renderer>();
+        Material mat = renderer.material;
+
+        float emission = Mathf.PingPong(Time.time, 1.0f);
+        Color firstColor = Color.cyan; //Replace this with whatever you want for your base color at emission level '1'
+        Color secondColor = Color.green;
+        Color thirdColor = Color.yellow;
+        Color fourthColor = Color.red;
+        Color fifthColor = Color.magenta;
+        Color sixthColor = Color.blue;
+        Color finalColor = firstColor * Mathf.LinearToGammaSpace(emission);
+
+        mat.SetColor("_EmissionColor", finalColor);
+        
     }
 }

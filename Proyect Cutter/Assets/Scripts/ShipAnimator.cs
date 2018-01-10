@@ -16,6 +16,5 @@ public class ShipAnimator : MonoBehaviour {
 
         float move = Input.GetAxis("Horizontal");
         anim.SetFloat("Rotating", move);
-		
 	}
 }

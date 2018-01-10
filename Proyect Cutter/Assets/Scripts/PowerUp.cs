@@ -26,6 +26,16 @@ public class PowerUp : MonoBehaviour {
         if (col.gameObject.name != "Shot")
         {
             Debug.Log("ShieldPickedUp");
+            /*enemyLife = 0;
+            YellowPowerup._shielded = false;
+            Score.score = Score.score + (score_enemy * Multiplier._Multiplier);
+            PointsAdder.isEnemyDestroyed = true;
+            PointsAdder.enemy_destroyed = this;
+            Multiplier.MPCounter = Multiplier.MPCounter + (score_enemy / 10);
+            Instantiate(DeathEnemyParticle, gameObject.transform.position, Quaternion.identity);
+            Destroy(gameObject);
+            Multiplier.killing_countdown = Multiplier.count;
+            */
         }
     }
 
