@@ -12,7 +12,7 @@ public class Shoot : MonoBehaviour
     void Start()
     {
         //GetComponent<Rigidbody>().velocity = Vector3.right * shootSpeed / Time.deltaTime;
-        Destroy(transform.parent.gameObject, lifeTime);
+        Destroy(transform.parent.parent.gameObject, lifeTime);
     }
 
     void OnCollisionEnter(Collision col)

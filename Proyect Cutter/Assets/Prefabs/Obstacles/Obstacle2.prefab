@@ -71,9 +71,10 @@ GameObject:
   - component: {fileID: 33249825899707472}
   - component: {fileID: 23091049536853324}
   - component: {fileID: 95185818269581902}
+  - component: {fileID: 136029074949755714}
   m_Layer: 0
   m_Name: mesh_obstacle
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,7 +90,7 @@ GameObject:
   - component: {fileID: 114597950964383860}
   m_Layer: 0
   m_Name: Obstacle2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -397,3 +398,16 @@ MonoBehaviour:
   bulb_broken: {fileID: 0}
   deadEnemy_anim: {fileID: 0}
   enemyCollider: {fileID: 0}
+--- !u!136 &136029074949755714
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1372481427893452}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 15.6
+  m_Height: 322.9
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 143.51}

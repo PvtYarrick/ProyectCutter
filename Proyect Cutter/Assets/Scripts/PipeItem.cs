@@ -31,28 +31,7 @@ public class PipeItem : MonoBehaviour {
 		rotater.localRotation = Quaternion.Euler(ringRotation, 0f, 0f);
 	}
 
-    /*protected virtual void OnCollisionEnter(Collision ShipCol)
-    {
-        if (ShipCol.transform.tag == "Ship" && YellowPowerup._shielded == false && enemyLife > 0)
-        {
 
-            Destroy(ShipCol.gameObject);
-            Levels.dead_ship = true;
-
-        }
-        else if (ShipCol.transform.tag == "Ship" && YellowPowerup._shielded == true)
-        {
-            enemyLife = 0;
-            YellowPowerup._shielded = false;
-            Score.score = Score.score + (score_enemy * Multiplier._Multiplier);
-            PointsAdder.isEnemyDestroyed = true;
-            PointsAdder.enemy_destroyed = this;
-            Multiplier.MPCounter = Multiplier.MPCounter + (score_enemy / 10);
-            Instantiate(DeathEnemyParticle, gameObject.transform.position, Quaternion.identity);
-            Destroy(gameObject);
-            Multiplier.killing_countdown = Multiplier.count;
-        }
-    }*/
 
     public int vida()
     {
@@ -72,5 +51,6 @@ public class PipeItem : MonoBehaviour {
         Bulb_lights[bulb_index].enabled = false;
         Bulb_meshes[bulb_index].GetComponent<MeshFilter>().sharedMesh = bulb_broken.GetComponent<MeshFilter>().sharedMesh;
         bulb_index += 1;
-    }  
+    } 
+
 }

@@ -27,11 +27,11 @@ public class Pipe : MonoBehaviour {
     //center location
     public List<Vector3> segmentPositions = new List<Vector3>();
     private List<GameObject> segmentCenterGameObjects = new List<GameObject>();
-    private List<Transform> segmentMatrix = new List<Transform>();
+    public List<Transform> segmentMatrix = new List<Transform>();
     private List<Vector3> parentRelativePosition = new List<Vector3>();
 
-    
-    public Pipe linkedNextPipe { get; set; }
+
+    public Pipe linkedNextPipe;
 
 	public float CurveAngle {
 		get {
@@ -95,7 +95,19 @@ public class Pipe : MonoBehaviour {
 		if (withItems) {
 			generators[Random.Range(0, generators.Length)].GenerateItems(this);
 		}
-	}
+
+        for(int i = 0; i < segmentMatrix.Count; i++)
+        {
+            if (!mesh.bounds.Contains(segmentMatrix[i].position))
+            {
+                segmentCenterGameObjects.RemoveAt(i);
+                segmentPositions.RemoveAt(i);
+                parentRelativePosition.RemoveAt(i);
+                segmentMatrix.RemoveAt(i);
+                i--;
+            }
+        }
+    }
 
 	private void SetVertices () {
 		vertices = new Vector3[pipeSegmentCount * curveSegmentCount * 4];
@@ -196,8 +208,10 @@ public class Pipe : MonoBehaviour {
     {
         for(int i = 0; i < segmentMatrix.Count; i++)
         {
-            if(segmentMatrix[i] != null)
+            if (segmentMatrix[i] != null)
                 Gizmos.DrawSphere(segmentMatrix[i].position, 0.1f);
+            else
+                Debug.LogError("there's a null sphere, with id " + i);
         }
     }
 #endif

@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 11462984}
   m_Layer: 0
   m_Name: Small Obstacle
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,6 +70,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f041aeb110e648f7a55e54320c29517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Bulb_meshes: []
+  Bulb_lights: []
+  bulb_broken: {fileID: 0}
+  deadEnemy_anim: {fileID: 0}
+  enemyCollider: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

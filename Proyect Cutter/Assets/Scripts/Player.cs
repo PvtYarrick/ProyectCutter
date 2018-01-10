@@ -5,17 +5,27 @@ public class Player : MonoBehaviour
 
     public PipeSystem pipeSystem;
 
-    public float velocity;
+    public ScoreAndSpeed hud;
+
+    public int startAcceleration;
+
+    //public float velocity;
     public float rotationVelocity;
 
     public Pipe currentPipe { get; private set; }
 
     public int currentPipeSegment { get; private set; }
 
-    private float distanceTraveled;
+    public float distanceTraveled;
     private float deltaToRotation;
     private float systemRotation;
     private float worldRotation, avatarRotation;
+
+    public float startVelocity;
+
+    public float[] accelerations;
+
+    private float acceleration, velocity;
 
     private Transform world, rotater;
 
@@ -40,78 +50,51 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        
         world = pipeSystem.transform.parent;
         rotater = transform.GetChild(0);
+        //currentPipe = pipeSystem.SetupFirstPipe();
+        //currentPipeSegment = 0;
+        //SetupCurrentPipe();
+        StartGame(startAcceleration);
+    }
+
+    public void StartGame(int accelerationMode)
+    {
+       
         currentPipe = pipeSystem.SetupFirstPipe();
         currentPipeSegment = 0;
+
+        acceleration = accelerations[accelerationMode];
+        velocity = startVelocity;
+
+        hud.SetValues(distanceTraveled, velocity);
+
         SetupCurrentPipe();
     }
 
     private void Update()
     {
-
+        velocity += acceleration * Time.deltaTime;
         score_count++;
         myTime = myTime + Time.deltaTime;
 
-        if (!dead_ship)
-        {
-            if (velocity == 5)
-            {
-                if (score_count == 5)
-                {
-                    //Score.score += (Score.score_add * Multiplier._Multiplier);
-                    score_count = 0;
-                }
-                /*currentPos.position = new Vector3(0, 0, 48.5f);
-                Music.pitch -= Time.deltaTime * NormalPitch / timeToDecrease;
-                if (Music.pitch <= 1)
-                {
-                    Music.pitch = NormalPitch;
-                }*/
+        hud.SetValues(distanceTraveled, velocity);
 
-            }
-            /*else if (Tube.tubeSpeed == SpeedPowerup.ExtraSpeed)
-            {
 
-                currentPos.position = new Vector3(0, 0, 52.4f);
-                Score.score += (Score.score_add * 2 * Multiplier._Multiplier);
-                score_count = 0;
-                Music.pitch += Time.deltaTime * NormalPitch / timeToIncrease;
-            }*/
-        }
-        /*if (dead_ship)
+
+        if ((Input.GetKey("up") || Input.GetKey("w")) && myTime > nextFire)
         {
-            Music.pitch -= Time.deltaTime * NormalPitch / timeToDecrease;
-            if (Music.pitch < 0)
-            {
-                Music.pitch = 0;
-            }
-    }*/
-        if (Input.GetKey("up") && myTime > nextFire)
-        {
-            //if (!isBlueActive)
-            //{
+            
             nextFire = myTime + fireDelta;
-            // Instantiate(Shoot, ShootSpawn.position, ShootSpawn.rotation);
+           
             GameObject newBullet = Instantiate(Shoot, Vector3.zero, Quaternion.identity);
-            newBullet.transform.SetParent(pipeSystem.transform, true);
-            newBullet.GetComponent<BulletPipeFollow>().SetInitialTarget(currentPipe, currentPipe.getClosestSegment(transform.position), rotater.rotation);
+           
+
+            newBullet.GetComponent<BulletPipeFollow>().SetInitialTarget(currentPipe, currentPipe.getClosestSegment(newBullet.transform.position), rotater.rotation, pipeSystem);
 
             nextFire = nextFire - myTime;
             myTime = 0.0F;
-            //pew.Play();
-            //}
-            /*else
-            {
-                nextFire = myTime + fireDelta;
-                Instantiate(Shoot, ShootSpawn.position, Quaternion.identity);
-                Instantiate(Shoot, ShootSpawnRight.position, Quaternion.identity);
-                Instantiate(Shoot, ShootSpawnLeft.position, Quaternion.identity);
-                nextFire = nextFire - myTime;
-                myTime = 0.0f;
-                threepew.Play();
-                isBlueActive = false;
-            }*/
         }
 
         float delta = velocity * Time.deltaTime;

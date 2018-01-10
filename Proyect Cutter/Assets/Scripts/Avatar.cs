@@ -13,13 +13,22 @@ public class Avatar : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter (Collider collider) {
-		if (deathCountdown < 0f) {
-			shape.enableEmission = false;
-			trail.enableEmission = false;
-			burst.Emit(burst.maxParticles);
-			deathCountdown = burst.startLifetime;
-		}
-	}
+
+        if (collider.tag == "Enemy")
+        {
+            Debug.Log(collider.tag);
+            if (deathCountdown < 0f)
+            {
+                shape.enableEmission = false;
+                trail.enableEmission = false;
+                burst.Emit(burst.maxParticles);
+                deathCountdown = burst.startLifetime;
+            }
+        }else if(collider.name != "Shot")
+        {
+            Debug.Log("PickedShield");
+        }
+        }
 	
 	private void Update () {
 		if (deathCountdown >= 0f) {

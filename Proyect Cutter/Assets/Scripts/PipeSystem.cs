@@ -53,8 +53,9 @@ public class PipeSystem : MonoBehaviour {
 
         for (int i = 0; i < pipes.Length; i++)
         {
+            pipes[i].name = "Pipe" + i;
             if (i == pipes.Length - 1)
-                pipes[i].linkedNextPipe = null;
+                pipes[i].linkedNextPipe = pipes[0];
             else
                 pipes[i].linkedNextPipe = pipes[i + 1];
         }
@@ -77,4 +78,19 @@ public class PipeSystem : MonoBehaviour {
 			}
 		}
 	}
+
+    public Pipe getClosestPipe(Vector3 fromPosition)
+    {
+        int pipeID = 0;
+        float closest = -1;
+        for (int i = 0; i < pipes.Length; i++)
+        {
+            if (closest == -1 || Vector3.Magnitude(fromPosition - pipes[i].transform.position) < closest)
+            {
+                closest = Vector3.Magnitude(fromPosition - pipes[i].transform.position);
+                pipeID = i;
+            }
+        }
+        return pipes[pipeID];
+    }
 }
