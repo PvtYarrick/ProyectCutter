@@ -138,7 +138,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 59411816}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -135.09119, y: -33.145027, z: 0.000029563907}
+  m_LocalPosition: {x: -81.22116, y: -15.606938, z: 0.000029563907}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 440338794}
@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.07439446, g: 0.63235295, b: 0.3091218, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -199,7 +199,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bfb4c8bf4684a334aa6a73a7f039ec55, type: 3}
+    m_Font: {fileID: 12800000, guid: 4cac173e3d582d746bc1d8984591b793, type: 3}
     m_FontSize: 37
     m_FontStyle: 0
     m_BestFit: 1
@@ -430,7 +430,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 221033038}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.275024, y: 42.4818, z: -0}
+  m_LocalPosition: {x: 4.099991, y: 18.0755, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 440338794}
@@ -478,7 +478,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bfb4c8bf4684a334aa6a73a7f039ec55, type: 3}
+    m_Font: {fileID: 12800000, guid: 4cac173e3d582d746bc1d8984591b793, type: 3}
     m_FontSize: 22
     m_FontStyle: 0
     m_BestFit: 1
@@ -536,7 +536,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 440338793}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -237.25, y: 200.2697, z: 0.00000095367}
+  m_LocalPosition: {x: -146.5, y: 96.60402, z: 0.00000095367}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 221033039}
@@ -569,7 +569,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bfb4c8bf4684a334aa6a73a7f039ec55, type: 3}
+    m_Font: {fileID: 12800000, guid: 4cac173e3d582d746bc1d8984591b793, type: 3}
     m_FontSize: 66
     m_FontStyle: 0
     m_BestFit: 1
@@ -11211,7 +11211,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1517581614}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -237.24991, y: 200.26976, z: 0}
+  m_LocalPosition: {x: -146.49991, y: 96.60408, z: 0}
   m_LocalScale: {x: 0.99999994, y: 1.0000001, z: 1}
   m_Children: []
   m_Father: {fileID: 2142422267}
@@ -14753,7 +14753,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1995466943}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -179.81792, y: -213.95499, z: 0}
+  m_LocalPosition: {x: -105.989044, y: -117.348755, z: 0}
   m_LocalScale: {x: 0.99999994, y: 1.0000001, z: 1}
   m_Children: []
   m_Father: {fileID: 2142422267}
@@ -14784,7 +14784,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: bfb4c8bf4684a334aa6a73a7f039ec55, type: 3}
+    m_Font: {fileID: 12800000, guid: 4cac173e3d582d746bc1d8984591b793, type: 3}
     m_FontSize: 66
     m_FontStyle: 0
     m_BestFit: 1
@@ -14910,7 +14910,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2142422266}
   m_LocalRotation: {x: -0.061628416, y: -0.7044161, z: 0.061628427, w: 0.704416}
-  m_LocalPosition: {x: -0.000061035156, y: 362.24237, z: 404.531}
+  m_LocalPosition: {x: -0.000030517578, y: 185.95845, z: 251.31468}
   m_LocalScale: {x: 1.0000001, y: 0.99999994, z: 1}
   m_Children:
   - {fileID: 440338794}

@@ -18,7 +18,7 @@ public class ScoreAndSpeed : MonoBehaviour {
 
     public void SetValues(float distanceTraveled, float velocity)
     {
-        distanceLabel.text = ("Score: " + (int)(distanceTraveled * 10f)).ToString();
+        distanceLabel.text = ("Sc0re " + (int)(distanceTraveled * 10f)).ToString();
         velocityLabel.text = (((int)(velocity * 10f)).ToString() + " Km/H");
     }
 }

@@ -72,14 +72,14 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       focusDistance: 9.19
-      aperture: 19.16
+      aperture: 16.4
       focalLength: 42.7
       useCameraFov: 0
       kernelSize: 2
   motionBlur:
     m_Enabled: 1
     m_Settings:
-      shutterAngle: 143
+      shutterAngle: 104
       sampleCount: 4
       frameBlending: 0.048
   eyeAdaptation:
@@ -284,7 +284,7 @@ MonoBehaviour:
     m_Enabled: 1
     m_Settings:
       spectralTexture: {fileID: 0}
-      intensity: 0.211
+      intensity: 0.378
   grain:
     m_Enabled: 1
     m_Settings:
