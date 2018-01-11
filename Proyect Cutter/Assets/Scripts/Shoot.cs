@@ -11,7 +11,7 @@ public class Shoot : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        SoundManager.getInstance().playSoundEffect(fx_shoot, 0.6f);
+        SoundManager.getInstance().playSoundEffect(fx_shoot, 0.6f, 0.6f);
         sphere = GetComponent<SphereCollider>();
 
         StartCoroutine(ActivateCollider());
@@ -43,7 +43,6 @@ public class Shoot : MonoBehaviour
                 AddPoints.isEnemyDestroyed = true;
                 AddPoints.enemy_destroyed = obj;
                 ScoreAndSpeed.deadEnemies++;
-
                 Multiplier.MPCounter = Multiplier.MPCounter + (obj.enemyScore() / 10);
                 Multiplier.killing_countdown = Multiplier.count;
 

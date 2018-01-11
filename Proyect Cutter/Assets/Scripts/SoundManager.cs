@@ -126,15 +126,25 @@ using UnityEngine;
         musicSource.volume = m_volume;
     }
 
+    public void setMusicPitch(float m_pitch)
+    {
+        musicSource.pitch = m_pitch;
+    }
+
     public void setsecondaryMusicVolume(float m_volume)
     {
         secondarymusicSource.volume = m_volume;
     }
+    public void setsecondaryMusicPitch(float m_pitch)
+    {
+        secondarymusicSource.pitch = m_pitch;
+    }
 
     /** Used to play single sound clips effects.
      */
-    public void playSoundEffect(AudioClip clip, float volume) {
+    public void playSoundEffect(AudioClip clip, float volume, float pitch) {
         efxSource.volume = volume;
+        efxSource.pitch = pitch;
         efxSource.clip = clip;
         efxSource.Play();
         

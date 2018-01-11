@@ -12,6 +12,7 @@ public class ScoreAndSpeed : MonoBehaviour {
 
     public GameSceneManager manager;
     public static int deadEnemies;
+    
 
     public Text scoreLabel, distanceLabel, velocityLabel, enemiesKilled, shieldActive, speedBoosted;
 
@@ -19,7 +20,8 @@ public class ScoreAndSpeed : MonoBehaviour {
     public void Start()
     {
         shieldActive.text = "Shield deactivated!";
-        speedBoosted.text = "Normal speed";
+        speedBoosted.text = "N0rmal speed";
+       
     }
     
 
@@ -38,6 +40,7 @@ public class ScoreAndSpeed : MonoBehaviour {
         if (avatar.isShieldUp == true)
         {
             shieldActive.text = "Shield activated!";
+            
         }else
         {
             shieldActive.text = "Shield deactivated!";

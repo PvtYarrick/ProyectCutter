@@ -5,6 +5,7 @@ public class Avatar : MonoBehaviour {
 	public ParticleSystem shape, trail, burst;
 
 	private Player player;
+    public MeshRenderer shield_renderer;
 
 	public float deathCountdown = -1f;
 
@@ -15,9 +16,17 @@ public class Avatar : MonoBehaviour {
     
     public float stopRunning = 0f;
 
+    //public GameObject shieldBarrier;
+
 	private void Awake () {
 		player = transform.root.GetComponent<Player>();
+        
+        
 	}
+    private void Start()
+    {
+        shield_renderer.enabled = false;
+    }
 
 	private void OnTriggerEnter (Collider collider) {
 
@@ -33,10 +42,13 @@ public class Avatar : MonoBehaviour {
             }else
             {
                 isShieldUp = false;
+                shield_renderer.enabled = false;
             }
         }else if(collider.name == "mesh_shield")
         {
             isShieldUp = true;
+            shield_renderer.enabled = true;
+            //Instantiate(shieldBarrier,avatar.transform.position, Quaternion.identity);
             Destroy(collider.gameObject);
 
         }else if (collider.name == "mesh_speed")

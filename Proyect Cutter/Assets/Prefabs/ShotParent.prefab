@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55d04e0513d53a04e8aad8badff9703b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fx_shoot: {fileID: 8300000, guid: 0c3a2e1391aff004299aff77edb5c243, type: 3}
+  fx_shoot: {fileID: 8300000, guid: 6a5785c8358a05a40998fc334ea70cba, type: 3}
 --- !u!114 &114647853371878690
 MonoBehaviour:
   m_ObjectHideFlags: 1
