@@ -104,7 +104,7 @@ MonoBehaviour:
   - {fileID: 11403388, guid: f44504c1880b44ec688c1df9eae543e2, type: 2}
   - {fileID: 114396740230108694, guid: 396f1a470d1aeed49b298f03bad31df2, type: 2}
   - {fileID: 114890453086510518, guid: 3fcc5b1180a7cf945911c65eafd3dca1, type: 2}
-  segmentPositions: []
+  - {fileID: 114341532617213470, guid: 7a8380b8d812d2643b88c1a0d57d6fc0, type: 2}
   segmentMatrix: []
   linkedNextPipe: {fileID: 0}
 --- !u!1001 &100100000

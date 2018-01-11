@@ -35,7 +35,7 @@ public class Pipe : MonoBehaviour {
 	private float relativeRotation;
 
     //center location
-    public List<Vector3> segmentPositions = new List<Vector3>();
+    private List<Vector3> segmentPositions = new List<Vector3>();
     private List<GameObject> segmentCenterGameObjects = new List<GameObject>();
     public List<Transform> segmentMatrix = new List<Transform>();
     private List<Vector3> parentRelativePosition = new List<Vector3>();

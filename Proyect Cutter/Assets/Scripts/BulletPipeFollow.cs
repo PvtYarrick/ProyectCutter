@@ -5,12 +5,20 @@ using UnityEngine;
 public class BulletPipeFollow : MonoBehaviour
 {
     public float bulletSpeed = 0.05f;
-
+    public float lifeTime = 2f;
     public int currentSegment = 0;
-    public Pipe currentPipe = null;
-    public Pipe currentPipeLinked = null;
+    public GameObject trailRenderer;
+    
+
+    private Pipe currentPipe = null;
+    private Pipe currentPipeLinked = null;
+
     private PipeSystem system;
     private float previousDistance = float.MaxValue;
+
+    private Quaternion childRot;
+    private Transform rotaterChild;
+ 
 
     public void SetInitialTarget(Pipe nextTargetPipe, int currentSegment, Quaternion nextRotation, PipeSystem _system)
     {
@@ -19,11 +27,20 @@ public class BulletPipeFollow : MonoBehaviour
         system = _system;
 
         this.currentSegment = currentSegment;
+        GetNextDirection();
 
-        transform.GetChild(0).transform.rotation = nextRotation;
+        rotaterChild = transform.GetChild(0);
+        childRot = nextRotation;
 
-        getNextDirection();
+        Destroy(gameObject, lifeTime);
 
+        StartCoroutine(ActivateTrail());
+    }
+    IEnumerator ActivateTrail()
+    {
+        yield return new WaitForSeconds(0.1f);
+        
+        trailRenderer.SetActive(true);
     }
 #if UNITY_EDITOR
     private void OnDrawGizmos()
@@ -32,71 +49,45 @@ public class BulletPipeFollow : MonoBehaviour
         Gizmos.DrawSphere(transform.position, 0.2f);
     }
 #endif
-    void Update()
+
+    private void Update()
     {
-
         transform.Translate(Vector3.forward * bulletSpeed);
-
-
-        if (currentPipe == null || currentSegment >= currentPipe.segmentPositions.Count)
-        {
-            Debug.LogError("We're out of segments!! Searching new");
-            getNextDirection();
-        }
-
         Vector3 targetPos = currentPipe.segmentMatrix[currentSegment].position;
         Vector3 targetDir = targetPos - transform.position;
 
         Debug.DrawLine(targetPos, transform.position);
 
         Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, 1000, 0.0F);
-       // Debug.DrawRay(transform.position, newDir, Color.red);
-
         transform.rotation = Quaternion.LookRotation(newDir);
-        Debug.Log("Distance " + Vector3.Magnitude(currentPipe.segmentPositions[currentSegment] - transform.position));
 
-        float distance = Vector3.Magnitude(currentPipe.segmentPositions[currentSegment] - transform.position);
+        float distance = Vector3.Magnitude(currentPipe.segmentMatrix[currentSegment].position - transform.position);
+
         if (distance > previousDistance)
-        {
+        { 
             previousDistance = float.MaxValue;
-            getNextDirection();
+            GetNextDirection();
         }
         else
         {
             previousDistance = distance;
         }
+        rotaterChild.rotation = childRot;
 
     }
 
-    void getNextDirection()
+    void GetNextDirection()
     {
-        if(currentPipe == null)
+        currentSegment++;
+        if (currentSegment >= currentPipe.segmentMatrix.Count)
         {
-            currentPipe = currentPipeLinked;
-            currentPipeLinked = currentPipe.linkedNextPipe;
+            currentPipe = currentPipe.linkedNextPipe;
             currentSegment = 0;
         }
-        else if (currentSegment >= currentPipe.segmentPositions.Count - 1)
-        {
-            if (currentPipe.linkedNextPipe == null)
-            {
-                currentPipe = system.getClosestPipe(transform.position);
-                if (currentPipe.linkedNextPipe != null)
-                    currentPipeLinked = currentPipe.linkedNextPipe;
-                currentSegment = 0;
-            }
-            else
-            {
-                currentPipe = currentPipe.linkedNextPipe;
-                currentPipeLinked = currentPipe.linkedNextPipe;
-                currentSegment = 0;
-            }
-            
-        }
-        else
-        {
-            currentSegment++;
-        }
 
     }
+
+    
+
+    
 }

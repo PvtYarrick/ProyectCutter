@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 33249825899707472}
   - component: {fileID: 23091049536853324}
   - component: {fileID: 95185818269581902}
-  - component: {fileID: 136029074949755714}
+  - component: {fileID: 136022975413813494}
   m_Layer: 0
   m_Name: mesh_obstacle
   m_TagString: Enemy
@@ -398,7 +398,7 @@ MonoBehaviour:
   bulb_broken: {fileID: 0}
   deadEnemy_anim: {fileID: 0}
   enemyCollider: {fileID: 0}
---- !u!136 &136029074949755714
+--- !u!136 &136022975413813494
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

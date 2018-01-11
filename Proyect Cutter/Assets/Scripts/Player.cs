@@ -5,11 +5,14 @@ public class Player : MonoBehaviour
 
     public PipeSystem pipeSystem;
 
+    public Avatar avatar;
+
+    public GameSceneManager manager;
+
     public ScoreAndSpeed hud;
 
     public int startAcceleration;
 
-    //public float velocity;
     public float rotationVelocity;
 
     public Pipe currentPipe { get; private set; }
@@ -25,7 +28,7 @@ public class Player : MonoBehaviour
 
     public float[] accelerations;
 
-    private float acceleration, velocity;
+    public float acceleration, velocity;
 
     private Transform world, rotater;
 
@@ -46,6 +49,7 @@ public class Player : MonoBehaviour
     {
         gameObject.SetActive(false);
         dead_ship = true;
+        manager.DeadPlayer();
     }
 
     private void Start()
@@ -75,11 +79,20 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        velocity += acceleration * Time.deltaTime;
-        score_count++;
-        myTime = myTime + Time.deltaTime;
+        if (avatar.goingFast == false)
+        {
+            velocity += acceleration * Time.deltaTime;
+            score_count++;
+            myTime = myTime + Time.deltaTime;
 
-        hud.SetValues(distanceTraveled, velocity);
+            hud.SetValues(distanceTraveled, velocity);
+        }else
+        {
+            velocity += 2 * (acceleration * Time.deltaTime);
+            myTime = myTime + Time.deltaTime;
+
+            hud.SetValues(distanceTraveled, velocity);
+        }
 
 
 
@@ -91,7 +104,7 @@ public class Player : MonoBehaviour
             GameObject newBullet = Instantiate(Shoot, Vector3.zero, Quaternion.identity);
            
 
-            newBullet.GetComponent<BulletPipeFollow>().SetInitialTarget(currentPipe, currentPipe.getClosestSegment(newBullet.transform.position), rotater.rotation, pipeSystem);
+            newBullet.GetComponent<BulletPipeFollow>().SetInitialTarget(currentPipe, currentPipe.getClosestSegment(newBullet.transform.position), rotater.localRotation, pipeSystem);
 
             nextFire = nextFire - myTime;
             myTime = 0.0F;

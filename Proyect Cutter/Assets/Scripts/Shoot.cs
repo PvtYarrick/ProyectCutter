@@ -1,21 +1,28 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-
-    public float shootSpeed = 0.05f;
-    private Vector3 shootspeed;
-
-    public float lifeTime = 2f;
-
     public AudioClip fx_shoot;
+
+
+    SphereCollider sphere;
 
     // Use this for initialization
     void Start()
     {
-        //GetComponent<Rigidbody>().velocity = Vector3.right * shootSpeed / Time.deltaTime;
-        Destroy(transform.parent.parent.gameObject, lifeTime);
         SoundManager.getInstance().playSoundEffect(fx_shoot, 0.6f);
+        sphere = GetComponent<SphereCollider>();
+
+        StartCoroutine(ActivateCollider());
+    }
+
+
+    IEnumerator ActivateCollider()
+    {
+        yield return new WaitForSeconds(0.2f);
+
+        sphere.enabled = true;
     }
 
     void OnCollisionEnter(Collision col)
@@ -26,10 +33,7 @@ public class Shoot : MonoBehaviour
         {
             
             obj.hit();
-            //if (obj.vida() == 1)
-            //{
-
-            //}
+            
 
             if (obj.vida() <= 0)
             {
@@ -38,6 +42,7 @@ public class Shoot : MonoBehaviour
                 Score.score = Score.score + (obj.enemyScore() * Multiplier._Multiplier);
                 AddPoints.isEnemyDestroyed = true;
                 AddPoints.enemy_destroyed = obj;
+                ScoreAndSpeed.deadEnemies++;
 
                 Multiplier.MPCounter = Multiplier.MPCounter + (obj.enemyScore() / 10);
                 Multiplier.killing_countdown = Multiplier.count;
@@ -46,7 +51,8 @@ public class Shoot : MonoBehaviour
                 obj.enemyCollider.enabled = false;
             }
 
-            Destroy(transform.parent.gameObject);
+            
+            Destroy(transform.parent.parent.gameObject);
         }
     }
 }

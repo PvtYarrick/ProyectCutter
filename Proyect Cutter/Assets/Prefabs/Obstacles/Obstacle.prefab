@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 33807407035218232}
   - component: {fileID: 23110710747419358}
   - component: {fileID: 95953809829633242}
-  - component: {fileID: 136007452596010928}
+  - component: {fileID: 136330393410555340}
   m_Layer: 0
   m_Name: mesh_obstacle
   m_TagString: Enemy
@@ -113,9 +113,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1961203906581812}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: -0.97, z: 0}
+  m_LocalScale: {x: 0.008790719, y: 0.005, z: 0.0059160166}
   m_Children:
   - {fileID: 4138451690919168}
   m_Father: {fileID: 0}
@@ -308,7 +308,7 @@ MonoBehaviour:
   bulb_broken: {fileID: 0}
   deadEnemy_anim: {fileID: 0}
   enemyCollider: {fileID: 0}
---- !u!136 &136007452596010928
+--- !u!136 &136330393410555340
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
