@@ -12375,7 +12375,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 949739761}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.0549927, y: -5.634201, z: 0}
+  m_LocalPosition: {x: -5.0549927, y: -9.274502, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1491271645}
@@ -16629,7 +16629,7 @@ RectTransform:
   m_GameObject: {fileID: 1438619365}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 100}
-  m_LocalScale: {x: 0.2254642, y: 0.2254642, z: 0.2254642}
+  m_LocalScale: {x: 0.24145299, y: 0.24145299, z: 0.24145299}
   m_Children:
   - {fileID: 1727454537}
   - {fileID: 1491271645}
@@ -16729,7 +16729,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1491271644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -117.600006, y: 143.23116, z: 0}
+  m_LocalPosition: {x: -117.600006, y: 133.64719, z: 0}
   m_LocalScale: {x: 1.3555634, y: 1.3555632, z: 1.3555632}
   m_Children:
   - {fileID: 949739762}
@@ -17628,8 +17628,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1547498378}
-        m_MethodName: 
-        m_Mode: 1
+        m_MethodName: GoToScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
