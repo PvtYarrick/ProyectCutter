@@ -62,7 +62,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1885648313714042
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,10 +315,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1636e7142a158f4409ac438fc4ea8443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 0.05
+  bulletSpeed: 0.15
   lifeTime: 2
   currentSegment: 0
-  trailRenderer: {fileID: 1160334450893230}
+  shotRenderer: {fileID: 1667369333641920}
 --- !u!135 &135565398318684276
 SphereCollider:
   m_ObjectHideFlags: 1

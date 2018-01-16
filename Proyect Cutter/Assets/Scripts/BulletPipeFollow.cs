@@ -7,7 +7,8 @@ public class BulletPipeFollow : MonoBehaviour
     public float bulletSpeed = 0.05f;
     public float lifeTime = 2f;
     public int currentSegment = 0;
-    public GameObject trailRenderer;
+   
+    public GameObject shotRenderer;
     
 
     private Pipe currentPipe = null;
@@ -38,9 +39,10 @@ public class BulletPipeFollow : MonoBehaviour
     }
     IEnumerator ActivateTrail()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.09f);
         
-        trailRenderer.SetActive(true);
+      
+        shotRenderer.SetActive(true);
     }
 #if UNITY_EDITOR
     private void OnDrawGizmos()

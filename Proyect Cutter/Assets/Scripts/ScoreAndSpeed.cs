@@ -21,6 +21,7 @@ public class ScoreAndSpeed : MonoBehaviour {
     {
         shieldActive.text = "Shield deactivated!";
         speedBoosted.text = "N0rmal speed";
+        deadEnemies = 0;
        
     }
     

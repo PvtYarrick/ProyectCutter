@@ -88,7 +88,7 @@ public class Player : MonoBehaviour
             hud.SetValues(distanceTraveled, velocity);
         }else
         {
-            velocity += 2 * (acceleration * Time.deltaTime);
+            velocity += 4 * (acceleration * Time.deltaTime);
             myTime = myTime + Time.deltaTime;
 
             hud.SetValues(distanceTraveled, velocity);
