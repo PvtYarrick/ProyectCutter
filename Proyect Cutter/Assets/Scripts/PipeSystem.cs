@@ -14,6 +14,7 @@ public class PipeSystem : MonoBehaviour {
     public AudioClip mu_game;
 
 	private void Awake () {
+        //Debug.Log("WEH"+emptyPipeCount);
 		pipes = new Pipe[pipeCount];
 		for (int i = 0; i < pipes.Length; i++) {
 			Pipe pipe = pipes[i] = Instantiate<Pipe>(pipePrefab);
@@ -40,6 +41,8 @@ public class PipeSystem : MonoBehaviour {
     }
 
     public Pipe SetupFirstPipe () {
+
+        //Debug.Log();
 		transform.localPosition = new Vector3(0f, -pipes[1].CurveRadius);
 		return pipes[1];
 	}

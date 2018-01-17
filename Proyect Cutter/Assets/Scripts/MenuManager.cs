@@ -9,8 +9,15 @@ public class MenuManager : MonoBehaviour {
     public MainMenuPanel mainMenuPanel;
     public LevelsPanel levelsPanel;
 
-    public void GoToScene(string level)
+    public void GoToScoreAttack(string level)
     {
+        ScoreAndSpeed.winConditionSetter = "Velocity";
+        SceneManager.LoadScene(level);  
+    }
+
+    public void GoToHatchRepairs(string level)
+    {
+        ScoreAndSpeed.winConditionSetter = "Kills";
         SceneManager.LoadScene(level);
     }
 

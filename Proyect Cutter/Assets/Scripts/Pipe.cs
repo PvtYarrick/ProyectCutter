@@ -73,51 +73,53 @@ public class Pipe : MonoBehaviour {
         float emission = floor + Mathf.PingPong(Time.time, ceiling - floor);
     }
 
-	public void Generate (bool withItems = true)
+    public void Generate(bool withItems = true)
     {
-        for(int i = 0; i < segmentCenterGameObjects.Count; i++)
-        {
-            DestroyImmediate(segmentCenterGameObjects[i]);
-        }
-
-        segmentCenterGameObjects.Clear();
-        segmentPositions.Clear();
-        segmentMatrix.Clear();
-        parentRelativePosition.Clear();
-
-        transform.position = Vector3.zero;
-        transform.rotation = Quaternion.identity;
-
-
-        curveRadius = Random.Range(minCurveRadius, maxCurveRadius);
-		curveSegmentCount =
-			Random.Range(minCurveSegmentCount, maxCurveSegmentCount + 1);
-		mesh.Clear();
-		SetVertices();
-		SetUV();
-		SetTriangles();
-		mesh.RecalculateNormals();
-
-		for (int i = 0; i < transform.childCount; i++)
-        {
-            if(!transform.GetChild(i).name.Equals("uCenter"))
-			    Destroy(transform.GetChild(i).gameObject);
-		}
-		if (withItems) {
-			generators[Random.Range(0, generators.Length)].GenerateItems(this);
-		}
-
-        for(int i = 0; i < segmentMatrix.Count; i++)
-        {
-            if (!mesh.bounds.Contains(segmentMatrix[i].position))
+            for (int i = 0; i < segmentCenterGameObjects.Count; i++)
             {
-                segmentCenterGameObjects.RemoveAt(i);
-                segmentPositions.RemoveAt(i);
-                parentRelativePosition.RemoveAt(i);
-                segmentMatrix.RemoveAt(i);
-                i--;
+                DestroyImmediate(segmentCenterGameObjects[i]);
             }
-        }
+
+            segmentCenterGameObjects.Clear();
+            segmentPositions.Clear();
+            segmentMatrix.Clear();
+            parentRelativePosition.Clear();
+
+            transform.position = Vector3.zero;
+            transform.rotation = Quaternion.identity;
+
+
+            curveRadius = Random.Range(minCurveRadius, maxCurveRadius);
+            curveSegmentCount =
+                Random.Range(minCurveSegmentCount, maxCurveSegmentCount + 1);
+            mesh.Clear();
+            SetVertices();
+            SetUV();
+            SetTriangles();
+            mesh.RecalculateNormals();
+
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (!transform.GetChild(i).name.Equals("uCenter"))
+                    Destroy(transform.GetChild(i).gameObject);
+            }
+            if (withItems)
+            {
+                generators[Random.Range(0, generators.Length)].GenerateItems(this);
+            }
+
+            for (int i = 0; i < segmentMatrix.Count; i++)
+            {
+                if (!mesh.bounds.Contains(segmentMatrix[i].position))
+                {
+                    segmentCenterGameObjects.RemoveAt(i);
+                    segmentPositions.RemoveAt(i);
+                    parentRelativePosition.RemoveAt(i);
+                    segmentMatrix.RemoveAt(i);
+                    i--;
+                }
+            }
+        
     }
 
 	private void SetVertices () {

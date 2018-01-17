@@ -5138,7 +5138,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 949739761}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.0549927, y: -19.950684, z: 0}
+  m_LocalPosition: {x: -5.0549927, y: -5.553234, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1491271645}
@@ -5594,7 +5594,7 @@ RectTransform:
   m_GameObject: {fileID: 1438619365}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 100}
-  m_LocalScale: {x: 0.30485612, y: 0.30485612, z: 0.30485612}
+  m_LocalScale: {x: 0.22513263, y: 0.22513263, z: 0.22513263}
   m_Children:
   - {fileID: 1727454537}
   - {fileID: 1491271645}
@@ -5674,7 +5674,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1491271644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -117.600006, y: 105.53966, z: 0}
+  m_LocalPosition: {x: -117.600006, y: 143.44432, z: 0}
   m_LocalScale: {x: 1.3555634, y: 1.3555632, z: 1.3555632}
   m_Children:
   - {fileID: 949739762}
@@ -6010,7 +6010,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1712807571}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1547498378}
+        m_MethodName: GoToHatchRepairs
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Game
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1712807571
@@ -6338,7 +6349,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1547498378}
-        m_MethodName: GoToScene
+        m_MethodName: GoToScoreAttack
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

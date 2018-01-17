@@ -23,6 +23,8 @@ public class Avatar : MonoBehaviour {
     public AudioClip fx_gotSpeed;
     public AudioClip fx_lostShield;
 
+    public GameObject Rocket;
+    private Animator anim_crash;
 
     private void Awake () {
 		player = transform.root.GetComponent<Player>();
@@ -33,21 +35,31 @@ public class Avatar : MonoBehaviour {
         shield_renderer.enabled = false;
         speed_particles.Stop();
         lostshield_particles.Stop();
+        anim_crash = Rocket.GetComponent<Animator>();
     }
 
 	private void OnTriggerEnter (Collider collider) {
 
+        if (Player.dead_ship) return;
+
         if (collider.tag == "Enemy")
         {
             Debug.Log(collider.tag);
+
             if (deathCountdown < 0f && isShieldUp == false)
             {
+
+                Player.dead_ship = true;
+                anim_crash.SetTrigger("_crashed");
                 shape.enableEmission = false;
                 trail.enableEmission = false;
-                burst.Emit(burst.maxParticles);
-                deathCountdown = burst.startLifetime;
-            }else
-            {
+                burst.Play();
+                //burst.Emit(burst.maxParticles);
+                deathCountdown = burst.main.duration;
+                
+
+            }else if( isShieldUp == true ){
+
                 SoundManager.getInstance().playSoundEffect(fx_lostShield, 100f, 1.3f);
                 lostshield_particles.Play();
                 isShieldUp = false;

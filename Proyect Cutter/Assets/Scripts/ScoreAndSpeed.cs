@@ -7,19 +7,24 @@ public class ScoreAndSpeed : MonoBehaviour {
 
     public Player player;
     public Avatar avatar;
-    public float numberToWin = 500f;
-    public string winConditionSetter = "Velocity";
+    private float velocitytoWin = 6f;
+    private float enemiestoWin = 1f;
+    public static string winConditionSetter;
 
     public GameSceneManager manager;
     public static int deadEnemies;
 
-    
+    public static bool iveWon = false;
 
     public Text scoreLabel, distanceLabel, velocityLabel, enemiesKilled, shieldActive, speedBoosted;
 
-    
+    public void Awake()
+    {
+        iveWon = false;
+    }
     public void Start()
     {
+        
         shieldActive.text = "Shield deactivated!";
         speedBoosted.text = "N0rmal speed";
         deadEnemies = 0;
@@ -31,11 +36,14 @@ public class ScoreAndSpeed : MonoBehaviour {
     {
         enemiesKilled.text = ("Hatches closed " + deadEnemies.ToString());
         scoreLabel.text = ((int)(player.distanceTraveled * 10f)).ToString();
-        if (player.velocity >= numberToWin && winConditionSetter == "Velocity")
+        if (player.velocity >= velocitytoWin && winConditionSetter == "Velocity")
         {
+            iveWon = true;
             manager.WinConMet();
-        }else if (deadEnemies >= numberToWin && winConditionSetter == "Kills")
+
+        }else if (deadEnemies >= enemiestoWin && winConditionSetter == "Kills")
         {
+            iveWon = true;
             manager.WinConMet();
         }
 

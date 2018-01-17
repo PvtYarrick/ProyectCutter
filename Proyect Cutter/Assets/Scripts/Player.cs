@@ -47,9 +47,14 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-        gameObject.SetActive(false);
-        dead_ship = true;
+        //gameObject.SetActive(false);
         manager.DeadPlayer();
+    }
+
+    private void Awake()
+    {
+        dead_ship = false;
+        //deltaToRotation;
     }
 
     private void Start()
@@ -75,6 +80,7 @@ public class Player : MonoBehaviour
         hud.SetValues(distanceTraveled, velocity);
 
         SetupCurrentPipe();
+
     }
 
     private void Update()
@@ -95,21 +101,24 @@ public class Player : MonoBehaviour
         }
 
 
-
-        if ((Input.GetKey("up") || Input.GetKey("w")) && myTime > nextFire)
+        if (dead_ship == false && ScoreAndSpeed.iveWon == false)
         {
-            
-            nextFire = myTime + fireDelta;
-           
-            GameObject newBullet = Instantiate(Shoot, Vector3.zero, Quaternion.identity);
-           
+            if ((Input.GetKey("up") || Input.GetKey("w")) && myTime > nextFire)
+            {
 
-            newBullet.GetComponent<BulletPipeFollow>().SetInitialTarget(currentPipe, currentPipe.getClosestSegment(newBullet.transform.position), rotater.localRotation, pipeSystem);
+                nextFire = myTime + fireDelta;
 
-            nextFire = nextFire - myTime;
-            myTime = 0.0F;
+                GameObject newBullet = Instantiate(Shoot, Vector3.zero, Quaternion.identity);
+
+
+                newBullet.GetComponent<BulletPipeFollow>().SetInitialTarget(currentPipe, currentPipe.getClosestSegment(newBullet.transform.position), rotater.localRotation, pipeSystem);
+
+                nextFire = nextFire - myTime;
+                myTime = 0.0F;
+            }
+
+            UpdateAvatarRotation();
         }
-
         float delta = velocity * Time.deltaTime;
         distanceTraveled += delta;
         systemRotation += delta * deltaToRotation;
@@ -123,14 +132,14 @@ public class Player : MonoBehaviour
 
 
         }
-
         pipeSystem.transform.localRotation = Quaternion.Euler(0f, 0f, systemRotation);
 
-        UpdateAvatarRotation();
+
     }
 
     private void UpdateAvatarRotation()
     {
+
         avatarRotation +=
             rotationVelocity * Time.deltaTime * Input.GetAxis("Horizontal");
 
@@ -144,7 +153,14 @@ public class Player : MonoBehaviour
 
     private void SetupCurrentPipe()
     {
-        deltaToRotation = 360f / (2f * Mathf.PI * currentPipe.CurveRadius);
+        if (currentPipe.CurveRadius == 0f)
+        {
+            deltaToRotation = 360f / (2f * Mathf.PI * 0.01f);
+        }
+        else
+        {
+            deltaToRotation = 360f / (2f * Mathf.PI * currentPipe.CurveRadius);
+        }
         worldRotation += currentPipe.RelativeRotation;
         if (worldRotation < 0f)
         {
