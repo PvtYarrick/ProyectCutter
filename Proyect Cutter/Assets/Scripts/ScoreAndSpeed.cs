@@ -12,6 +12,7 @@ public class ScoreAndSpeed : MonoBehaviour {
 
     public GameSceneManager manager;
     public static int deadEnemies;
+
     
 
     public Text scoreLabel, distanceLabel, velocityLabel, enemiesKilled, shieldActive, speedBoosted;

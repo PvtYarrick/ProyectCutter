@@ -4,8 +4,12 @@ public class ShipAnimator : MonoBehaviour {
 
 
     Animator anim;
+    private ParticleSystem speed_particles;
+    
+
 	// Use this for initialization
 	void Start () {
+
 
         anim = GetComponent<Animator>();
 		
