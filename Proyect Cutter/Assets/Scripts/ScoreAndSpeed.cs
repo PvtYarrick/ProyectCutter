@@ -21,13 +21,14 @@ public class ScoreAndSpeed : MonoBehaviour {
     public void Awake()
     {
         iveWon = false;
+        deadEnemies = 0;
     }
     public void Start()
     {
         
         shieldActive.text = "Shield deactivated!";
         speedBoosted.text = "N0rmal speed";
-        deadEnemies = 0;
+        
        
     }
     

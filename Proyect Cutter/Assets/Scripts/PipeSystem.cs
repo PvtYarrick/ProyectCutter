@@ -11,7 +11,7 @@ public class PipeSystem : MonoBehaviour {
 
 	private Pipe[] pipes;
 
-    public AudioClip mu_game;
+    //public AudioClip mu_game;
 
 	private void Awake () {
         //Debug.Log("WEH"+emptyPipeCount);
@@ -35,9 +35,9 @@ public class PipeSystem : MonoBehaviour {
 
     private void Start()
     {
-        SoundManager.getInstance().stopMusic();
-        SoundManager.getInstance().setMusicVolume(0.3f);
-        SoundManager.getInstance().setMusicAndPlay(mu_game);
+        //SoundManager.getInstance().stopMusic();
+        //SoundManager.getInstance().setMusicVolume(0.3f);
+        //SoundManager.getInstance().setMusicAndPlay(mu_game);
     }
 
     public Pipe SetupFirstPipe () {

@@ -8,6 +8,7 @@ public class MenuManager : MonoBehaviour {
     public GameObject rocket;
     public MainMenuPanel mainMenuPanel;
     public LevelsPanel levelsPanel;
+    public GameObject optionsPanel; 
 
     public void GoToScoreAttack(string level)
     {
@@ -31,6 +32,19 @@ public class MenuManager : MonoBehaviour {
     public void CloseLevelPanel()
     {
         levelsPanel.showing = false;
+        mainMenuPanel.gameObject.SetActive(true);
+        mainMenuPanel.showing = true;
+    }
+
+    public void OpenOptions()
+    {
+        optionsPanel.SetActive(true);
+        mainMenuPanel.showing = false;
+    }
+
+    public void CloseOptions()
+    {
+        optionsPanel.SetActive(false);
         mainMenuPanel.gameObject.SetActive(true);
         mainMenuPanel.showing = true;
     }
