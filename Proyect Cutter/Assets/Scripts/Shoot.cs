@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Shoot : MonoBehaviour
 {
-    public AudioClip fx_shoot;
+    //public AudioClip fx_shoot;
 
 
     SphereCollider sphere;
@@ -11,7 +11,7 @@ public class Shoot : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        SoundManager.getInstance().playSoundEffect(fx_shoot, 0.6f, 0.6f);
+        //SoundManager.getInstance().playSoundEffect(fx_shoot, 0.6f, 0.6f);
         sphere = GetComponent<SphereCollider>();
 
         StartCoroutine(ActivateCollider());

@@ -41,9 +41,9 @@ public class Player : MonoBehaviour
     public GameObject Shoot;
     public Transform ShootSpawn;
 
-    private float fireDelta = 0.5F;
-    private float nextFire = 1F;
-    private float myTime = 0.0F;
+    public float fireDelta;
+    public float nextFire;
+    public float myTime;
 
     public void Die()
     {
@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
             myTime = myTime + Time.deltaTime;
 
             hud.SetValues(distanceTraveled, velocity);
-        }else
+        } else
         {
             velocity += 4 * (acceleration * Time.deltaTime);
             myTime = myTime + Time.deltaTime;
@@ -105,7 +105,18 @@ public class Player : MonoBehaviour
         {
             if ((Input.GetKey("up") || Input.GetKey("w")) && myTime > nextFire)
             {
-
+                if (avatar.poweredUp == false)
+                {
+                    fireDelta = 0.5F;
+                    nextFire = 1F;
+                    myTime = 0.0F;
+                }
+                else if (avatar.poweredUp == true)
+                {
+                    fireDelta = 0.2F;
+                    nextFire = 0.5F;
+                    myTime = 0.0F;
+                }
                 nextFire = myTime + fireDelta;
 
                 GameObject newBullet = Instantiate(Shoot, Vector3.zero, Quaternion.identity);
@@ -116,8 +127,9 @@ public class Player : MonoBehaviour
                 nextFire = nextFire - myTime;
                 myTime = 0.0F;
             }
+    
 
-            UpdateAvatarRotation();
+    UpdateAvatarRotation();
         }
         float delta = velocity * Time.deltaTime;
         distanceTraveled += delta;

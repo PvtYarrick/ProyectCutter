@@ -303,7 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55d04e0513d53a04e8aad8badff9703b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fx_shoot: {fileID: 8300000, guid: 6a5785c8358a05a40998fc334ea70cba, type: 3}
 --- !u!114 &114647853371878690
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -315,7 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1636e7142a158f4409ac438fc4ea8443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletSpeed: 0.15
   lifeTime: 2
   currentSegment: 0
   shotRenderer: {fileID: 1667369333641920}

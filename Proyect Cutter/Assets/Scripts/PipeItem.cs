@@ -20,7 +20,7 @@ public class PipeItem : MonoBehaviour {
     public Animator deadEnemy_anim;
     public BoxCollider enemyCollider;
     public AudioClip fx_brokenglass;
-    public Avatar player;
+    
 
     private void Awake () {
 		rotater = transform.GetChild(0);
@@ -44,19 +44,18 @@ public class PipeItem : MonoBehaviour {
     }
     public void hit()
     {
-        if (player.poweredUp == false)
             enemyLife -= 1;
-        else if (player.poweredUp == true)
-            enemyLife -= 2;
+            BrokenBulbParticle.Play();
+            Bulb_lights[bulb_index].enabled = false;
+            Bulb_meshes[bulb_index].GetComponent<MeshFilter>().sharedMesh = bulb_broken.GetComponent<MeshFilter>().sharedMesh;
+            bulb_index += 1;
+            SoundManager.getInstance().playSoundEffect(fx_brokenglass, 0.5f, 1f);
 
-        if (bulb_index >= Bulb_lights.Count) {
-            return;
-        }
-        BrokenBulbParticle.Play();
-        Bulb_lights[bulb_index].enabled = false;
-        Bulb_meshes[bulb_index].GetComponent<MeshFilter>().sharedMesh = bulb_broken.GetComponent<MeshFilter>().sharedMesh;
-        bulb_index += 1;
-        SoundManager.getInstance().playSoundEffect(fx_brokenglass, 0.5f, 1f);
-    } 
+        
+            if (bulb_index >= Bulb_lights.Count)
+            {
+                return;
+            }
+        } 
 
 }
