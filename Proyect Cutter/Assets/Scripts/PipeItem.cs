@@ -20,6 +20,7 @@ public class PipeItem : MonoBehaviour {
     public Animator deadEnemy_anim;
     public BoxCollider enemyCollider;
     public AudioClip fx_brokenglass;
+    public Avatar player;
 
     private void Awake () {
 		rotater = transform.GetChild(0);
@@ -43,7 +44,11 @@ public class PipeItem : MonoBehaviour {
     }
     public void hit()
     {
-        enemyLife -= 1;
+        if (player.poweredUp == false)
+            enemyLife -= 1;
+        else if (player.poweredUp == true)
+            enemyLife -= 2;
+
         if (bulb_index >= Bulb_lights.Count) {
             return;
         }

@@ -11,7 +11,10 @@ public class Avatar : MonoBehaviour {
 
     public bool isShieldUp = false;
 
-   
+    public bool poweredUp = false;
+
+    public float poweredShots = 0f;
+
     public bool goingFast = false;
     
     public float stopRunning = 0f;
@@ -80,17 +83,31 @@ public class Avatar : MonoBehaviour {
             stopRunning = stopRunning + 5f;
             Destroy(collider.gameObject);
             speed_particles.Play();
+        }else if (collider.name == "mesh_shots")
+        {
+            poweredUp = true;
+            poweredShots = poweredShots + 5f;
+            Destroy(collider.gameObject);
         }
     }
 	
 	private void Update () {
-        if (stopRunning >= 0f)
+        if (stopRunning > 0f)
         {
             stopRunning = stopRunning - (1f * Time.deltaTime);
         }
         else
         {
             goingFast = false;
+        }
+
+        if (poweredShots > 0f)
+        {
+            poweredShots = poweredShots - (1f * Time.deltaTime);
+        }
+        else
+        {
+            poweredUp = false;
         }
 
 

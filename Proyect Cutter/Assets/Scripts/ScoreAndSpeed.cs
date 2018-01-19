@@ -16,7 +16,7 @@ public class ScoreAndSpeed : MonoBehaviour {
 
     public static bool iveWon = false;
 
-    public Text scoreLabel, distanceLabel, velocityLabel, enemiesKilled, shieldActive, speedBoosted;
+    public Text scoreLabel, distanceLabel, velocityLabel, enemiesKilled, shotsPowered, speedBoosted;
 
     public void Awake()
     {
@@ -26,7 +26,7 @@ public class ScoreAndSpeed : MonoBehaviour {
     public void Start()
     {
         
-        shieldActive.text = "Shield deactivated!";
+        shotsPowered.text = "Shield deactivated!";
         speedBoosted.text = "N0rmal speed";
         
        
@@ -48,13 +48,13 @@ public class ScoreAndSpeed : MonoBehaviour {
             manager.WinConMet();
         }
 
-        if (avatar.isShieldUp == true)
+        if (avatar.poweredUp == true)
         {
-            shieldActive.text = "Shield activated!";
+            shotsPowered.text = "Shots powered!";
             
         }else
         {
-            shieldActive.text = "Shield deactivated!";
+            shotsPowered.text = "Regular shots";
         }
 
         if (avatar.goingFast == true)

@@ -10,9 +10,9 @@ public class RocketBehaviour : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        SoundManager.getInstance().setsecondaryMusicVolume(0.8f);
+        //SoundManager.getInstance().setsecondaryMusicVolume(0.8f);
         SoundManager.getInstance().setsecondaryMusicAndPlay(fx_rocketengine);
-        SoundManager.getInstance().setMusicVolume(0.7f);
+        //SoundManager.getInstance().setMusicVolume(0.7f);
         SoundManager.getInstance().setMusicAndPlay(mu_menu);
     }
 	

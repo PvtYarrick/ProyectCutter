@@ -40,7 +40,6 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -56,7 +55,6 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -105,6 +103,7 @@ MonoBehaviour:
   - {fileID: 114396740230108694, guid: 396f1a470d1aeed49b298f03bad31df2, type: 2}
   - {fileID: 114890453086510518, guid: 3fcc5b1180a7cf945911c65eafd3dca1, type: 2}
   - {fileID: 114341532617213470, guid: 7a8380b8d812d2643b88c1a0d57d6fc0, type: 2}
+  - {fileID: 114354841233054142, guid: 8f9a22421da244a4a8c74a6529bd629a, type: 2}
   segmentMatrix: []
   linkedNextPipe: {fileID: 0}
 --- !u!1001 &100100000

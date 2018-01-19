@@ -40,7 +40,8 @@ using UnityEngine;
      */
    private AudioSource efxSource;
 
-   private AudioSource secondarymusicSource;
+   private AudioSource secondarymusicSource; 
+     
 
     //==========================
     //=    PRIVATE METHODS     =
@@ -130,7 +131,7 @@ using UnityEngine;
     {
         musicSource.pitch = m_pitch;
     }
-
+    
     public void setsecondaryMusicVolume(float m_volume)
     {
         secondarymusicSource.volume = m_volume;
@@ -140,14 +141,18 @@ using UnityEngine;
         secondarymusicSource.pitch = m_pitch;
     }
 
+    public void setSFXVolume(float SFXvolume)
+    {
+        efxSource.volume = SFXvolume;
+    }
+
     /** Used to play single sound clips effects.
      */
     public void playSoundEffect(AudioClip clip, float volume, float pitch) {
-        efxSource.volume = volume;
+        efxSource.volume = volume; // * sfxVolume (range 0-1)
         efxSource.pitch = pitch;
         efxSource.clip = clip;
         efxSource.Play();
-        
     }
 
 }
