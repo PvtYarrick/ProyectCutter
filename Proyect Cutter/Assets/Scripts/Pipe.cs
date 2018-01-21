@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Pipe : MonoBehaviour {
 
+    public bool isVisible;
+    public static bool isFirst = false;
+
 	public float pipeRadius;
 	public int pipeSegmentCount;
 
@@ -71,6 +74,8 @@ public class Pipe : MonoBehaviour {
 		GetComponent<MeshFilter>().mesh = mesh = new Mesh();
 		mesh.name = "Pipe";
         float emission = floor + Mathf.PingPong(Time.time, ceiling - floor);
+        isVisible = true;
+
     }
 
     public void Generate(bool withItems = true)
@@ -93,17 +98,26 @@ public class Pipe : MonoBehaviour {
             curveSegmentCount =
                 Random.Range(minCurveSegmentCount, maxCurveSegmentCount + 1);
             mesh.Clear();
+        if (ScoreAndSpeed.iveWon == false)
+        {
             SetVertices();
             SetUV();
             SetTriangles();
             mesh.RecalculateNormals();
-
+        }else
+        {
+            if (isFirst == false)
+            {
+                isFirst = true;
+                isVisible = false;
+            }
+        }
             for (int i = 0; i < transform.childCount; i++)
             {
                 if (!transform.GetChild(i).name.Equals("uCenter"))
                     Destroy(transform.GetChild(i).gameObject);
             }
-            if (withItems)
+            if (withItems && ScoreAndSpeed.iveWon == false)
             {
                 generators[Random.Range(0, generators.Length)].GenerateItems(this);
             }

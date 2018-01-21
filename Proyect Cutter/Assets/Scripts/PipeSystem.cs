@@ -14,7 +14,7 @@ public class PipeSystem : MonoBehaviour {
     public AudioClip mu_game;
 
 	private void Awake () {
-        //Debug.Log("WEH"+emptyPipeCount);
+        Pipe.isFirst = false;
 		pipes = new Pipe[pipeCount];
 		for (int i = 0; i < pipes.Length; i++) {
 			Pipe pipe = pipes[i] = Instantiate<Pipe>(pipePrefab);
@@ -36,7 +36,7 @@ public class PipeSystem : MonoBehaviour {
     private void Start()
     {
         SoundManager.getInstance().stopMusic();
-        SoundManager.getInstance().setMusicVolume(0.3f);
+        SoundManager.getInstance().setMusicVolume(0.26f);
         SoundManager.getInstance().setMusicAndPlay(mu_game);
     }
 

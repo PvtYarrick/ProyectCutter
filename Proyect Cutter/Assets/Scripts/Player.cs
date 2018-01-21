@@ -2,6 +2,8 @@
 
 public class Player : MonoBehaviour
 {
+    private float countDown;
+    private const float COUNT = 2f;
 
     public PipeSystem pipeSystem;
 
@@ -54,7 +56,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         dead_ship = false;
-        //deltaToRotation;
+        countDown = 0;
     }
 
     private void Start()
@@ -119,9 +121,9 @@ public class Player : MonoBehaviour
                 }
                 nextFire = myTime + fireDelta;
 
-                GameObject newBullet = Instantiate(Shoot, Vector3.zero, Quaternion.identity);
+                GameObject newBullet = Instantiate(Shoot,Vector3.zero, Quaternion.identity);
 
-
+                //Vector3.zero
                 newBullet.GetComponent<BulletPipeFollow>().SetInitialTarget(currentPipe, currentPipe.getClosestSegment(newBullet.transform.position), rotater.localRotation, pipeSystem);
 
                 nextFire = nextFire - myTime;
@@ -137,15 +139,30 @@ public class Player : MonoBehaviour
 
         if (systemRotation >= currentPipe.CurveAngle)
         {
+
             delta = (systemRotation - currentPipe.CurveAngle) / deltaToRotation;
-            currentPipe = pipeSystem.SetupNextPipe();
-            SetupCurrentPipe();
+
+            
+                currentPipe = pipeSystem.SetupNextPipe();
+                SetupCurrentPipe();
+           if (currentPipe.isVisible == false)
+            {
+                countDown = COUNT;
+            }
+
             systemRotation = delta * deltaToRotation;
 
 
         }
         pipeSystem.transform.localRotation = Quaternion.Euler(0f, 0f, systemRotation);
-
+        if (countDown > 0)
+        {
+            countDown -= Time.deltaTime;
+            if (countDown <= 0)
+            {
+                manager.WinConMet();
+            }
+        }
 
     }
 

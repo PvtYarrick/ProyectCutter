@@ -7,8 +7,8 @@ public class ScoreAndSpeed : MonoBehaviour {
 
     public Player player;
     public Avatar avatar;
-    private float velocitytoWin = 6f;
-    private float enemiestoWin = 1f;
+    private float velocitytoWin = 8f;
+    private int enemiestoWin = 30;
     public static string winConditionSetter;
 
     public GameSceneManager manager;
@@ -17,6 +17,8 @@ public class ScoreAndSpeed : MonoBehaviour {
     public static bool iveWon = false;
 
     public Text scoreLabel, distanceLabel, velocityLabel, enemiesKilled, shotsPowered, speedBoosted;
+
+    public AudioClip fx_winSound;
 
     public void Awake()
     {
@@ -28,24 +30,33 @@ public class ScoreAndSpeed : MonoBehaviour {
         
         shotsPowered.text = "Shield deactivated!";
         speedBoosted.text = "N0rmal speed";
-        
        
     }
     
 
     public void Update()
     {
+        if (iveWon)
+        {
+            return;
+        }
         enemiesKilled.text = ("Hatches closed " + deadEnemies.ToString());
         scoreLabel.text = ((int)(player.distanceTraveled * 10f)).ToString();
         if (player.velocity >= velocitytoWin && winConditionSetter == "Velocity")
         {
             iveWon = true;
-            manager.WinConMet();
-
-        }else if (deadEnemies >= enemiestoWin && winConditionSetter == "Kills")
+            avatar.gameObject.GetComponent<SphereCollider>().enabled = false;
+            player.velocity *= 1.05f;
+            avatar.PlayParticleSystem();
+            SoundManager.getInstance().playSoundEffect(fx_winSound,1f,1f);
+        }
+        else if (deadEnemies >= enemiestoWin && winConditionSetter == "Kills")
         {
             iveWon = true;
-            manager.WinConMet();
+            avatar.gameObject.GetComponent<SphereCollider>().enabled = false;
+            player.velocity *= 1.3f;
+            avatar.PlayParticleSystem();
+            SoundManager.getInstance().playSoundEffect(fx_winSound, 1f, 1f);
         }
 
         if (avatar.poweredUp == true)

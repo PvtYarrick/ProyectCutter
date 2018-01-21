@@ -5,6 +5,7 @@ public class StateManager : MonoBehaviour {
 
     public void Retry()
     {
+        ScoreAndSpeed.iveWon = false;
         SceneManager.LoadScene("Game");
     }
 

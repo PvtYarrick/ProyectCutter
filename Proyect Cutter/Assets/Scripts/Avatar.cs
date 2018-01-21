@@ -21,17 +21,22 @@ public class Avatar : MonoBehaviour {
 
     public ParticleSystem speed_particles;
     public ParticleSystem lostshield_particles;
+    public ParticleSystem win_particles;
 
     public AudioClip fx_gotShield;
     public AudioClip fx_gotSpeed;
+    public AudioClip fx_gotShots;
     public AudioClip fx_lostShield;
+    public AudioClip fx_redAlert;
 
     public GameObject Rocket;
     private Animator anim_crash;
 
+    public static Avatar instance;
+
     private void Awake () {
 		player = transform.root.GetComponent<Player>();
-
+        instance = this;
     }
     private void Start()
     {
@@ -39,6 +44,11 @@ public class Avatar : MonoBehaviour {
         speed_particles.Stop();
         lostshield_particles.Stop();
         anim_crash = Rocket.GetComponent<Animator>();
+    }
+
+    public void PlayParticleSystem()
+    {
+        win_particles.Play();
     }
 
 	private void OnTriggerEnter (Collider collider) {
@@ -53,6 +63,11 @@ public class Avatar : MonoBehaviour {
             {
 
                 Player.dead_ship = true;
+
+                SoundManager.getInstance().setsecondaryMusicVolume(1f);
+                SoundManager.getInstance().setsecondaryMusicPitch(1f);
+                SoundManager.getInstance().setsecondaryMusicAndPlay(fx_redAlert);
+
                 anim_crash.SetTrigger("_crashed");
                 shape.enableEmission = false;
                 trail.enableEmission = false;
@@ -63,7 +78,7 @@ public class Avatar : MonoBehaviour {
 
             }else if( isShieldUp == true ){
 
-                SoundManager.getInstance().playSoundEffect(fx_lostShield, 100f, 1.3f);
+                SoundManager.getInstance().playSoundEffect(fx_lostShield, 1f, 1.3f);
                 lostshield_particles.Play();
                 isShieldUp = false;
                 shield_renderer.enabled = false;
@@ -72,22 +87,24 @@ public class Avatar : MonoBehaviour {
         {
             isShieldUp = true;
             shield_renderer.enabled = true;
-            SoundManager.getInstance().playSoundEffect(fx_gotShield, 10f, 1.3f);
+            SoundManager.getInstance().playSoundEffect(fx_gotShield, 1f, 1.3f);
             //Instantiate(shieldBarrier,avatar.transform.position, Quaternion.identity);
             Destroy(collider.gameObject);
 
         }else if (collider.name == "mesh_speed")
         {
             goingFast = true;
-            SoundManager.getInstance().playSoundEffect(fx_gotSpeed, 10f, 1f);
+            SoundManager.getInstance().playSoundEffect(fx_gotSpeed, 1f, 1f);
             stopRunning = stopRunning + 5f;
             Destroy(collider.gameObject);
             speed_particles.Play();
+
         }else if (collider.name == "mesh_shots")
         {
             poweredUp = true;
             poweredShots = poweredShots + 5f;
             Destroy(collider.gameObject);
+            SoundManager.getInstance().playSoundEffect(fx_gotShots, 1f, 1f);
         }
     }
 	

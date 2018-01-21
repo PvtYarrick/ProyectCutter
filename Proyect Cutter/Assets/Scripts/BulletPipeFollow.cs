@@ -19,7 +19,13 @@ public class BulletPipeFollow : MonoBehaviour
 
     private Quaternion childRot;
     private Transform rotaterChild;
- 
+
+    private Avatar avatar;
+
+    void Start()
+    {
+        avatar = Avatar.instance;
+    }
 
     public void SetInitialTarget(Pipe nextTargetPipe, int currentSegment, Quaternion nextRotation, PipeSystem _system)
     {
@@ -75,6 +81,13 @@ public class BulletPipeFollow : MonoBehaviour
             previousDistance = distance;
         }
         rotaterChild.rotation = childRot;
+
+        if (avatar.poweredUp == true)
+        {
+            Renderer renderer = GetComponentInChildren<Renderer>();
+            Material mat = renderer.material;
+            mat.SetColor("_EmissionColor", Color.blue);
+        }
 
     }
 

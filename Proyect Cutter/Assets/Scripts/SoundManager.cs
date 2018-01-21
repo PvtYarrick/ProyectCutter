@@ -51,6 +51,7 @@ using UnityEngine;
 
    private void setup() {
        efxSource =   gameObject.AddComponent<AudioSource>();
+       efxSource.priority = 1;
        musicSource = gameObject.AddComponent<AudioSource>();
        musicSource.loop = true;
        secondarymusicSource = gameObject.AddComponent<AudioSource>();

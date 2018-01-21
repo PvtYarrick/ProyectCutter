@@ -638,7 +638,6 @@ MonoBehaviour:
   deadEnemy_anim: {fileID: 95398438173289682}
   enemyCollider: {fileID: 65728452757763988}
   fx_brokenglass: {fileID: 8300000, guid: 09fcd5f9e307f024891c41b1cfe9294b, type: 3}
-  player: {fileID: 114816449676766256, guid: f86c9b5aeda43d541a811ed0b968ec4d, type: 2}
   enemy_score: 30
   life: 2
 --- !u!198 &198175118150710618
@@ -1261,7 +1260,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 9.64
+      scalar: 15.8
       minScalar: 10
       maxCurve:
         serializedVersion: 2

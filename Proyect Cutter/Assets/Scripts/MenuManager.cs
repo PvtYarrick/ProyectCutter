@@ -12,12 +12,14 @@ public class MenuManager : MonoBehaviour {
 
     public void GoToScoreAttack(string level)
     {
+        ScoreAndSpeed.iveWon = false;
         ScoreAndSpeed.winConditionSetter = "Velocity";
         SceneManager.LoadScene(level);  
     }
 
     public void GoToHatchRepairs(string level)
     {
+        ScoreAndSpeed.iveWon = false;
         ScoreAndSpeed.winConditionSetter = "Kills";
         SceneManager.LoadScene(level);
     }
@@ -55,13 +57,6 @@ public class MenuManager : MonoBehaviour {
         Application.Quit();
     }
 
-    IEnumerator LaunchRocket(string level)
-    {
-        Animator anim = rocket.GetComponent<Animator>();
-        anim.enabled = true;
-        yield return new WaitForSeconds(5);
-        SceneManager.LoadScene(level);
-    }
 
 
 

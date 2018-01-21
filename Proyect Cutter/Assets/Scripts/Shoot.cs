@@ -54,4 +54,7 @@ public class Shoot : MonoBehaviour
             Destroy(transform.parent.parent.gameObject);
         }
     }
+    void Update()
+    {
+    }
 }
