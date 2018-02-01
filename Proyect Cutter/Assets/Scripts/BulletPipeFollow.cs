@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BulletPipeFollow : MonoBehaviour
 {
-    private float bulletSpeed = 0.03f;
+    private float bulletSpeed = 0.06f;
     public float lifeTime = 2f;
     public int currentSegment = 0;
    
